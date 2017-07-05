@@ -1,0 +1,520 @@
+<!--300x75-->
+<!DOCTYPE html>
+<html>
+
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>eBay Christmas Deals 2016</title>
+      <style>
+      /*Basic Setup*/
+
+      @font-face {
+       font-family: 'market-sans-regular';
+       src: url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-Regular-WebS.woff2') format('woff2'),
+            url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-Regular-WebS.woff') format('woff'),
+            url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-Regular-WebS.ttf') format('truetype');
+      }
+
+      @font-face {
+       font-family: 'market-sans-bold';
+       src: url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-SemiBold-WebS.woff2') format('woff2'),
+            url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-SemiBold-WebS.woff') format('woff'),
+            url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-SemiBold-WebS.ttf') format('truetype');
+      }
+
+      * { 
+            margin: 0; padding: 0; text-decoration: none; border: 0; outline: 0; font-weight: normal; 
+      } 
+      body, html { 
+            text-decoration: none; border: 0; outline: 0; margin: 0; padding: 0; width: 300px; height: 75px; overflow: hidden; background-color: #FFF; font-family: Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      }
+
+      }
+      body:hover { 
+            cursor: pointer; 
+      }
+      img { 
+            border: 0; outline: 0; margin: 0; padding: 0; 
+      } 
+      a { 
+            text-decoration: none; border: 0; outline: 0; margin: 0; padding: 0; 
+      } 
+
+      #mainwrapper {
+            width: 300px;
+            height: 75px;
+            overflow: hidden;
+            position: absolute;
+            background-color: #ffffff;
+            z-index: 98;
+      }
+
+      .border {
+            background-color: #ccc;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+      }
+      
+      #border-top {
+            width: 300px;
+            height: 1px;
+      }
+      
+      #border-right {
+            left: 299px;
+            width: 1px;
+            height: 75px;
+      }
+      
+      #border-bottom {
+            top: 74px;
+            width: 300px;
+            height: 1px;
+      }
+      
+      #border-left {
+            width: 1px;
+            height: 75px;
+      }
+
+      #backgroundClick {
+            width: 300px;
+            height: 75px;
+            position: absolute;
+            top: 0;
+            left: 0;
+      }
+
+      /*Intro*/
+      #intro {
+            position: absolute;
+            background-color: #fff;
+            width: 300px;
+            height: 75px;
+            z-index: 10;
+            top: 0px;
+            right: 0px;
+            display:none;
+      }
+      
+      #introLogoHolder {
+            position: absolute;
+            bottom: 0;
+            height: 75px;
+            background-color: #fabda6;
+            background-image: url("https://secure.img-cdn.mediaplex.com/0/710/229501/103014_10404_logo.png");
+            background-repeat: no-repeat;
+            opacity: 1;
+            background-position: 250px 10px;
+            width: 300px;
+            
+            transition: opacity 1s ease-in;
+            -moz-transition: opacity 1s ease-in;
+            -ms-transition: opacity 1s ease-in;
+            -o-transition: opacity 1s ease-in;
+            -webkit-transition: opacity 1s ease-in;
+      }
+      
+      #titleHolder {
+            position: absolute;
+            top: 26px;
+            left: 8px;
+            width: 220px;
+            color: #bd3037;
+            font-family: 'market-sans-bold', Helvetica, Arial, sans-serif;
+            font-size: 31px;
+            line-height: 24px;
+      }      
+
+      /* Slider */
+      #prev {
+            left: -5px;
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: perspective(1px) scaleX(-1);
+            transform: perspective(1px) scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+      }
+      
+      #next {
+            right: 210px;
+      }
+      
+      .uiBtn {
+            position: absolute;
+            width: 12px;
+            height: 22px;
+            top: 20px;
+            background-image: url(https://secure.img-cdn.mediaplex.com/0/710/229501/103014_ui.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+            background-position: center center;
+            z-index: 100;
+            padding: 5px;
+      }
+      
+      .uiBtn:hover {
+            cursor: pointer;
+            background-image: url("https://secure.img-cdn.mediaplex.com/0/710/229501/103014_ui2.png");
+      }
+      
+      #imageHolder {
+            height: 75px;
+            position: absolute;
+            width: 86px;
+            background-image: url("https://secure.img-cdn.mediaplex.com/0/710/229501/103014_loading.gif");
+            background-repeat: no-repeat;
+            background-position: center center;
+      }
+      
+      #imgCont {
+            width: 60px;
+            height: 60px;
+            top: 8px;
+            left: 12px;
+            position: absolute;
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+      }
+      
+      #title {
+           color: #666666;
+           font-family: 'market-sans-regular', Helvetica, Arial, sans-serif;
+           font-size: 12px;
+           overflow: hidden;
+           width: 150px;
+           height: 18px;
+           text-transform: capitalize;
+      }
+      
+      #infoHolder {
+            color: #bd3037;
+            height: 70px;
+            position: absolute;
+            top: 5px;
+            left: 95px;
+            width: 136px;
+      }
+      
+      #infoHolder #discountPrice {
+            display: block;
+            font-size: 12px;
+            font-family: 'market-sans-regular', Helvetica, Arial, sans-serif;
+            color: #bd3037;
+      }
+      
+      .strike {
+            font-weight: bold;
+            position: relative;
+            white-space: nowrap;
+            /* would center line-through in the middle of the wrapped lines */
+      }
+      
+      .strike:after {
+            border-top: 1px solid #bd3037;
+            position: absolute;
+            content: "";
+            right: 0;
+            top: 50%;
+            left: 0;
+      }
+      
+      #infoHolder #price {
+            padding: 0;
+            font-family: 'market-sans-regular', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            color: #bd3037;
+            font-weight: bold;
+            width: 40px;
+            top: 0px;
+            position: relative;
+            display: block;
+      }
+      span#price {
+            line-height: 15px;
+      }
+
+      #cta {
+         left: 199px;
+          top: 20px;
+          position: relative;
+          margin-top: 20px;
+          width: 98px;
+          max-width: 90px;
+          border: 1px solid #bd3037;
+          background-color: #bd3037;
+          background-image: url(https://secure.img-cdn.mediaplex.com/0/710/229501/103014_10404_Display_Christmas_Deals_cta_arrow_v2.png);
+          background-repeat: no-repeat;
+          background-position: 68px center;
+          height: 26px;
+
+      }
+      #cta-body {
+            padding: 8px 10px 10px 8px;
+            font-family: 'market-sans-bold', Helvetica, Arial, sans-serif;
+            width: 91px;
+            font-weight: 300;
+            font-size: 11px;
+            line-height: 10px;
+            color: #fabda6;
+            bottom: 0px;
+            text-align: left;
+            max-width: 70px;
+      }
+
+      #cta:hover {
+            border: 1px solid #bd3037;
+            background-color: #fabda6;
+            background-image: url(https://secure.img-cdn.mediaplex.com/0/710/229501/103014_10404_Display_Christmas_Deals_cta_arrow.png);
+      }
+      #cta-body:hover {
+        color: #bd3037;
+      }
+
+      #cta-tip {
+            position: relative;
+            top: 0px;
+            bottom: 0px;
+            right: 8px;
+            margin: auto;
+            font-weight:200;
+            font-size: 15px;
+            line-height:27px;
+            color: #bd3037  ;
+            bottom: 0px;
+            height: 30px;
+            text-align: right;
+            float: right;
+            max-width:15px;
+            background
+      }
+      
+      #discountHolder {
+            position: relative;
+            line-height: 15px;
+            top: 0;
+      }
+      
+      #discountPercentages {
+            font-size: 12px;
+            color: #bd3037;
+            position: relative;
+            font-weight: 800;
+            display: block;
+      }
+      
+      #legal {
+            color: #bd3037;
+            font-size: 12px;
+            display: inline;
+            padding: 0 5px 0 0;
+            float:left;
+            position: relative;
+            text-transform: uppercase;
+      }
+      
+      #itemContainer {
+            height: 75px;
+            overflow: hidden;
+            position: absolute;
+            top: -100px;
+            width: 300px;
+            z-index: 1;
+
+      }
+      
+      #eek {
+            font-size: 11px;
+            color: #bd3037;
+      }
+      /* Slide Effekt */
+      
+      .animatePosOut {
+            transition: all .5s ease-in;
+            -moz-transition: all .5s ease-in;
+            -ms-transition: all .5s ease-in;
+            -o-transition: all .5s ease-in;
+            -webkit-transition: all .5s ease-in;
+      }
+      
+      .animatePosIn {
+            transition: all .3s ease-out;
+            -moz-transition: all .3s ease-out;
+            -ms-transition: all .3s ease-out;
+            -o-transition: all .5s ease-out;
+            -webkit-transition: all .3s ease-out;
+      }
+      
+      .slideLeftStart {
+            left: 0px;
+      }
+      
+      .slideLeft {
+            left: 0px;
+      }
+      
+      .scaleStart {
+            opacity: 0;
+            filter: alpha(opacity=0);
+            transform: perspective(.5px) scale(0.3, 0.3);
+            -ms-transform: scale(0.3, 0.3);
+            /* IE 9 */
+            -webkit-transform: perspective(1px) scale(0.3, 0.3);
+            /* Safari */
+      }
+      
+      .scaleIn {
+            opacity: 1;
+            filter: alpha(opacity=1);
+            transform: perspective(1px) scale(1, 1);
+            -ms-transform: scale(1, 1);
+            /* IE 9 */
+            -webkit-transform: perspective(1px) scale(1, 1);
+            /* Safari */
+      }
+      
+      .slideRightStart {
+            left: 162px;
+      }
+      
+      .slideRight {
+            left: 500px;
+      }
+      </style>
+      
+</head>
+
+<body id="mainbody">
+      <div id="mainwrapper">
+     <!--<div id="fallback"><a href="http://uk.at.atwola.com/adlink/1065/3468237/0/2018/AdId=18008666;BnId=1;itime=240485581;nodecode=yes;impref=14992404853347870665;imprefseq=16047436749347184;imprefts=1499240485;link=http://rover.ebay.com/rover/1/710-229501-47862-2/4?mpt=2486&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=&ext_id=&ir_DAP_A1=4294967295&siteid=3&ff10=101349799&ipn=admain2&ff14=unknown&ff20=72&mpcr=101349799&rvr_id=1249864357594&ck=27419_main" target="_blank"><img src="FEED_10404_Display_October_Fallbacks_970x250.jpg" width="970" height="250"></a></div>
+        <script type="text/javascript">
+        document.getElementById('fallback').innerHTML="";
+        </script>-->
+            <div id="wrapper">
+                  <a href="http://uk.at.atwola.com/adlink/1065/3468237/0/2018/AdId=18008666;BnId=1;itime=240485581;nodecode=yes;impref=14992404853347870665;imprefseq=16047436749347184;imprefts=1499240485;link=http://rover.ebay.com/rover/1/710-229501-47862-2/4?mpt=2486&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=&ext_id=&ir_DAP_A1=4294967295&siteid=3&ff10=101349799&ipn=admain2&ff14=unknown&ff20=72&mpcr=101349799&rvr_id=1249864357594&ck=27419_main" target="_blank">
+                        <div id="backgroundClick"></div>
+                  </a>
+                  <a href="#" target="_blank" id="prodLink">
+                        <div id="itemContainer">
+                              <div id="imageHolder" class="slideLeftStart">
+                                    <div id="imgCont" data-width="140" data-height="140">
+                                          <img id="productImage" src="" alt="productimage" />
+                                    </div>
+                                    
+                              </div>
+                              <div id="infoHolder" class="slideRightStart">
+                                    <h1 id="title">...</h1>
+                                    <div id="eek"></div>
+                                     <div id="discountHolder">
+                                          <span id="legal"></span>
+                                          <div id="discountPrice"></div>
+                                          <span id="discountFlagEnd"></span>
+                                          
+                                    </div>
+                                    <span id="price">...</span>
+                              <span id="discountPercentages"></span>
+                              </div>
+                              <div id="cta">
+                                       <div id="cta-body">
+                                           Shop Now
+                                       </div>
+                                       <div id="cta-tip">
+                                          
+                                       </div>
+                                   </div>
+                        </div>
+                  </a>
+                  <div class="uiBtn" style="display:none;" id="prev"></div>
+                  <div class="uiBtn" style="display:none;" id="next"></div>
+                  <div id="introHolder">
+                        <a href="http://uk.at.atwola.com/adlink/1065/3468237/0/2018/AdId=18008666;BnId=1;itime=240485581;nodecode=yes;impref=14992404853347870665;imprefseq=16047436749347184;imprefts=1499240485;link=http://rover.ebay.com/rover/1/710-229501-47862-2/4?mpt=2486&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=&ext_id=&ir_DAP_A1=4294967295&siteid=3&ff10=101349799&ipn=admain2&ff14=unknown&ff20=72&mpcr=101349799&rvr_id=1249864357594&ck=27419_main" target="_blank">
+                              <div id="intro"></div>
+                        </a>
+                       
+                  </div>
+                   <a href="http://uk.at.atwola.com/adlink/1065/3468237/0/2018/AdId=18008666;BnId=1;itime=240485581;nodecode=yes;impref=14992404853347870665;imprefseq=16047436749347184;imprefts=1499240485;link=http://rover.ebay.com/rover/1/710-229501-47862-2/4?mpt=2486&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=&ext_id=&ir_DAP_A1=4294967295&siteid=3&ff10=101349799&ipn=admain2&ff14=unknown&ff20=72&mpcr=101349799&rvr_id=1249864357594&ck=27762_logo" target="_blank">
+                              <div id="introLogoHolder"></div>
+                        </a>
+
+                  <div id="titleHolder">
+                        Today's Deals
+                  </div>
+            </div>
+            <div class="border" id="border-top"></div>
+            <div class="border" id="border-right"></div>
+            <div class="border" id="border-bottom"></div>
+            <div class="border" id="border-left"></div>
+     <div id="fallback"></div>
+      </div>
+      <script type="text/javascript">
+      var discountNull = "&nbsp;";
+      var titleMaxLength = 20;
+
+
+      // Wordings:
+      var almGoneWording = "ALMOST GONE"; // Almost Gone Items
+      var freeShipWording = "Free delivery"; // Free Shipping
+      var prePercentages = "";
+      var afterPercentages = "% OFF ";
+      var currentOffer = "";
+      var disableScript = false;
+      var fallbackImageName = "https://secure.img-cdn.mediaplex.com/0/710/229501/103014_FEED_10404_Display_October_Fallbacks_300x75.jpg"
+
+      function get_browser_info() {
+            var ua = navigator.userAgent,
+                  tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if (/trident/i.test(M[1])) {
+                  tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+                  return {
+                        name: 'IE',
+                        version: (tem[1] || '')
+                  };
+            }
+            if (M[1] === 'Chrome') {
+                  tem = ua.match(/\bOPR\/(\d+)/)
+                  if (tem != null) {
+                        return {
+                              name: 'Opera',
+                              version: tem[1]
+                        };
+                  }
+            }
+            M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+            if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+                  M.splice(1, 1, tem[1]);
+            }
+            return {
+                  name: M[0],
+                  version: M[1]
+            };
+      }
+
+            function showFallback() {
+            var mainbody = document.getElementById('fallback');
+            mainbody.setAttribute('style', 'padding:0; margin:0;');
+            mainbody.innerHTML = '<a href="http://uk.at.atwola.com/adlink/1065/3468237/0/2018/AdId=18008666;BnId=1;itime=240485581;nodecode=yes;impref=14992404853347870665;imprefseq=16047436749347184;imprefts=1499240485;link=http://rover.ebay.com/rover/1/710-229501-47862-2/4?mpt=2486&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=&ext_id=&ir_DAP_A1=4294967295&siteid=3&ff10=101349799&ipn=admain2&ff14=unknown&ff20=72&mpcr=101349799&rvr_id=1249864357594&ck=27419_main" target="_blank" style="padding:0; margin:0; border:0;" ><img src="'+fallbackImageName+'" width="1272" height="328" style="padding:0; margin:0; border:0;"></a>';
+            document.getElementById('mainwrapper').setAttribute('style', 'display:none')
+      }
+
+
+      if (get_browser_info().name.indexOf('IE') && get_browser_info().version <= 9 && get_browser_info().name != "Safari") {
+            //IE 8 Fallback
+            showFallback();
+      }
+
+
+      function animate() {
+            TweenLite.to(_id("intro"), 1.4, { top: "75px", ease: Power2.easeOut});
+      }
+
+      </script>
+      <script type="text/javascript" src="https://secure.img-cdn.mediaplex.com/0/710/229501/103014_deals2016q2_deals_redesign.js"></script>
+      <script type="text/javascript" src="https://secure.img-cdn.mediaplex.com/0/711/TweenMax.min.js"></script>
+</body>
+
+</html>

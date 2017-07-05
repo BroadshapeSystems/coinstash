@@ -1,0 +1,4587 @@
+
+<!DOCTYPE HTML>
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Using Observables · Rangle.io : Angular 2 Training</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        <meta name="author" content="Rangle.io">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-image-captions/image-captions.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-versions/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-comment/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+            <!-- This is intentionally added inline to reduce patch complexity -->
+            <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Source+Sans+Pro&subset=latin">
+        
+
+    
+    <style>
+    .header {
+        background: rgba(248,248,248,0.98);
+        box-shadow: 1px 0 3px rgba(34,34,34,0.18);
+        max-height: 6.5rem;
+        padding-bottom: 1.2rem;
+        padding-top: 1rem;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 90;
+        font-family: "Source Sans Pro",sans-serif;
+    }
+
+    .header a {
+        color: #422d3f;
+        font-weight: normal;
+        text-decoration: none;
+    }
+
+    .header a:hover, .header a:focus {
+        color: #e5373a;
+        outline: none;
+    }
+
+    .header * {
+        box-sizing: border-box;
+    }
+
+    .header nav {
+        max-width: 930px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 1.5rem;
+    }
+
+    .header__menu {
+        display: inline-block;
+        float: right;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+    }
+
+    .header__menu-item {
+        color: #422d3f;
+        cursor: pointer;
+        display: none;
+        font-size: 1.6rem;
+        height: 100%;
+        letter-spacing: 0.05rem;
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+    }
+
+    .header__menu-item:hover, .header__menu-item:focus {
+        color: #e5373a;
+    }
+
+    .header__menu-item--has-dropdown {
+        position: relative;
+    }
+
+    .header__menu-item--has-dropdown:hover .dropdown {
+        display: block;
+    }
+
+    .header__menu-item--button {
+        display: none;
+        margin: 0;
+    }
+
+    .header__logo-image {
+        width: 11rem;
+        float: left;
+        margin-top: 1.6rem;
+    }
+
+    .btn3d {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        background: #e5373a;
+        border-radius: 4px;
+        box-shadow: 0 3px 0 0 #a11517;
+        color: #fff !important;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.1rem;
+        line-height: 1.2;
+        min-height: 38px;
+        padding: 1.2rem 2rem;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn3d:hover {
+        -webkit-transform: translateY(-3px);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 0 0 #a11517;
+        color: #fff;
+    }
+
+    .btn3d:active {
+        -webkit-transform: translateY(3px);
+        transform: translateY(3px);
+        background: #a11517;
+        box-shadow: 0 0 0 0 #47090a;
+    }
+
+    .dropdown {
+        background: rgba(248,248,248,0.98);
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: 5px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        display: none;
+        left: 5px;
+        list-style: none;
+        margin-left: 0;
+        min-width: 180px;
+                    padding-bottom: 1rem;
+        padding-top: 1rem;
+        position: absolute;
+        top: 40px;
+        margin-top: 0;
+        padding-left: 0;
+    }
+
+    .dropdown__item a {
+        display: block;
+        font-size: 1.4rem;
+        line-height: 2rem;
+        text-decoration: none;
+        margin-bottom: 0;
+        padding: 1rem 1.5rem;
+    }
+
+    .dropdown__item a:hover {
+        background: rgba(0,0,0,0.03);
+    }
+
+    @media (min-width: 550px) {
+        .header__menu-item--button {
+            margin-left: 1.5rem;
+        }
+    }
+
+    @media (min-width: 750px) {
+        .header {
+            max-height: 6.5rem;
+        }
+
+        .header__logo-image {
+            margin-top: 1.4rem;
+        }
+    }
+
+    @media (min-width: 1000px) {
+        .header {
+            max-height: 7rem;
+        }
+
+         .header__menu-item, .header__menu-item--button {
+             display: inline-block;
+         }
+    }
+
+    .book-summary, .book-body {
+        top: 6.5rem;
+    }
+    </style>
+    
+        
+    
+        
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="error_handling.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+  <!-- This is intentionally added inline to reduce patch complexity -->
+  <!-- Desktop Nav -->
+  <header class="header">
+      <nav role="navigation">
+          <a href="//rangle.io/">
+              <img
+                   class="header__logo-image"
+                   src="//rangle.io/images/logo-rangleio-wordmark.svg"
+                   alt="Rangle.io logo">
+          </a>
+          <div class="header__menu">
+              <span class="header__menu-item header__menu-item--has-dropdown">
+                  <span>Services</span>
+                  <ul class="dropdown">
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/services/web-application-development">
+                              Web App Development
+                          </a>
+                      </li>
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/services/javascript-html5-mobile">
+                              Mobile App Development
+                          </a>
+                      </li>
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/services/migrating-to-javascript">
+                              Tech Stack Migration
+                          </a>
+                      </li>
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/services/javascript-continuous-delivery">
+                              Development Process Consulting
+                          </a>
+                      </li>
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/services/javascript-training">
+                              Team Training &amp; Mentorship
+                          </a>
+                      </li>
+                  </ul>
+              </span>
+              <a class="header__menu-item"
+                 href="//rangle.io/process">
+                  Process
+              </a>
+              <a class="header__menu-item"
+                 href="//rangle.io/work">
+                  Work
+              </a>
+              <a class="header__menu-item"
+                 href="//rangle.io/events">
+                  Events
+              </a>
+              <a class="header__menu-item"
+                 href="//rangle.io/resources">
+                  Resources
+              </a>
+              <span class="header__menu-item header__menu-item--has-dropdown">
+                  <span>About</span>
+                  <ul class="dropdown">
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/team">
+                              Team
+                          </a>
+                      </li>
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/careers">
+                              Careers
+                          </a>
+                      </li>
+                      <li class="dropdown__item">
+                          <a href="//rangle.io/about/press">
+                              Press
+                          </a>
+                      </li>
+                  </ul>
+              </span>
+              <a class="header__menu-item"
+                 href="http://blog.rangle.io/">
+                  Blog
+              </a>
+              <a class="header__menu-item--button btn3d"
+                 href="//rangle.io/javascript-development-inquiry">
+                  Inquire
+              </a>
+          </div>
+      </nav>
+  </header>
+
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://www.gitbook.com/book/rangle-io/ngcourse2" target="_blank" class="custom-link">Rangle.io : Angular 2 Training</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../license.html">
+            
+                <a href="../license.html">
+            
+                    
+                    License
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../why_angular_2.html">
+            
+                <a href="../why_angular_2.html">
+            
+                    
+                    Why Angular?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../architect/">
+            
+                <a href="../architect/">
+            
+                    
+                    The Architect's Guide to Angular
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../architect/functional_forms.html">
+            
+                <a href="../architect/functional_forms.html">
+            
+                    
+                    Creating Functional Forms
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../features/">
+            
+                <a href="../features/">
+            
+                    
+                    EcmaScript 6 and TypeScript Features
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../features/es6.html">
+            
+                <a href="../features/es6.html">
+            
+                    
+                    ES6
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.1" data-path="../features/classes.html">
+            
+                <a href="../features/classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2" data-path="../features/refresher_on_this.html">
+            
+                <a href="../features/refresher_on_this.html">
+            
+                    
+                    Refresher on 'this'
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3" data-path="../features/arrow_functions.html">
+            
+                <a href="../features/arrow_functions.html">
+            
+                    
+                    Arrow Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.4" data-path="../features/template_strings.html">
+            
+                <a href="../features/template_strings.html">
+            
+                    
+                    Template Strings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.5" data-path="../features/inheritance.html">
+            
+                <a href="../features/inheritance.html">
+            
+                    
+                    Inheritance
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.6" data-path="../features/delegation.html">
+            
+                <a href="../features/delegation.html">
+            
+                    
+                    Delegation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.7" data-path="../features/constants_and_block_scoped_variables.html">
+            
+                <a href="../features/constants_and_block_scoped_variables.html">
+            
+                    
+                    Constants and Block Scoped Variables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.8" data-path="../features/spread_and_rest.html">
+            
+                <a href="../features/spread_and_rest.html">
+            
+                    
+                    ...spread and ...rest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.9" data-path="../features/destructuring.html">
+            
+                <a href="../features/destructuring.html">
+            
+                    
+                    Destructuring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.10" data-path="../features/es6_modules.html">
+            
+                <a href="../features/es6_modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../features/typescript.html">
+            
+                <a href="../features/typescript.html">
+            
+                    
+                    TypeScript
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.2.1" data-path="../features/getting_started_with_typescript.html">
+            
+                <a href="../features/getting_started_with_typescript.html">
+            
+                    
+                    Getting Started With TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.2" data-path="../features/working_with_tsc.html">
+            
+                <a href="../features/working_with_tsc.html">
+            
+                    
+                    Working With tsc
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.3" data-path="../features/typings.html">
+            
+                <a href="../features/typings.html">
+            
+                    
+                    Typings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.4" data-path="../features/linting.html">
+            
+                <a href="../features/linting.html">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.5" data-path="../features/typescript_features.html">
+            
+                <a href="../features/typescript_features.html">
+            
+                    
+                    TypeScript Features
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.6" data-path="../features/typescript_classes.html">
+            
+                <a href="../features/typescript_classes.html">
+            
+                    
+                    TypeScript Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.7" data-path="../features/interfaces.html">
+            
+                <a href="../features/interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.8" data-path="../features/shapes.html">
+            
+                <a href="../features/shapes.html">
+            
+                    
+                    Shapes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.9" data-path="../features/type_inference.html">
+            
+                <a href="../features/type_inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.10" data-path="../features/type_keyword.html">
+            
+                <a href="../features/type_keyword.html">
+            
+                    
+                    Type Keyword
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.11" data-path="../features/decorators.html">
+            
+                <a href="../features/decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.12" data-path="../features/property_decorators.html">
+            
+                <a href="../features/property_decorators.html">
+            
+                    
+                    Property Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.13" data-path="../features/class_decorators.html">
+            
+                <a href="../features/class_decorators.html">
+            
+                    
+                    Class Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2.14" data-path="../features/parameter_decorators.html">
+            
+                <a href="../features/parameter_decorators.html">
+            
+                    
+                    Parameter Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../tooling/">
+            
+                <a href="../tooling/">
+            
+                    
+                    The JavaScript Toolchain
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="../tooling/source_control.html">
+            
+                <a href="../tooling/source_control.html">
+            
+                    
+                    Source Control: git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="../tooling/the_command_line.html">
+            
+                <a href="../tooling/the_command_line.html">
+            
+                    
+                    The Command Line
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="../tooling/command_line_javascript.html">
+            
+                <a href="../tooling/command_line_javascript.html">
+            
+                    
+                    Command Line JavaScript: NodeJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="../tooling/back_end_code_sharing_and_distribution.html">
+            
+                <a href="../tooling/back_end_code_sharing_and_distribution.html">
+            
+                    
+                    Back-End Code Sharing and Distribution: npm
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.5" data-path="../tooling/module_loading_bundling_and_build_tasks.html">
+            
+                <a href="../tooling/module_loading_bundling_and_build_tasks.html">
+            
+                    
+                    Module Loading, Bundling and Build Tasks: Webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.6" data-path="../tooling/chrome.html">
+            
+                <a href="../tooling/chrome.html">
+            
+                    
+                    Chrome
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../bootstrapping/">
+            
+                <a href="../bootstrapping/">
+            
+                    
+                    Bootstrapping an Angular Application
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="../bootstrapping/file_structure.html">
+            
+                <a href="../bootstrapping/file_structure.html">
+            
+                    
+                    Understanding the File Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="../bootstrapping/bootstrapping_providers.html">
+            
+                <a href="../bootstrapping/bootstrapping_providers.html">
+            
+                    
+                    Bootstrapping Providers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../components/">
+            
+                <a href="../components/">
+            
+                    
+                    Components in Angular
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="../components/creating_components.html">
+            
+                <a href="../components/creating_components.html">
+            
+                    
+                    Creating Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2" data-path="../components/app_structure_with_components.html">
+            
+                <a href="../components/app_structure_with_components.html">
+            
+                    
+                    Application Structure with Components
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.2.1" data-path="../components/app_structure/passing_data_into_components.html">
+            
+                <a href="../components/app_structure/passing_data_into_components.html">
+            
+                    
+                    Passing Data into a Component
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2.2" data-path="../components/app_structure/responding_to_component_events.html">
+            
+                <a href="../components/app_structure/responding_to_component_events.html">
+            
+                    
+                    Responding to Component Events
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2.3" data-path="../components/app_structure/two_way_data_binding.html">
+            
+                <a href="../components/app_structure/two_way_data_binding.html">
+            
+                    
+                    Using Two-Way Data Binding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2.4" data-path="../components/app_structure/access_child_components_from_template.html">
+            
+                <a href="../components/app_structure/access_child_components_from_template.html">
+            
+                    
+                    Accessing Child Components from Template
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.3" data-path="../components/projection.html">
+            
+                <a href="../components/projection.html">
+            
+                    
+                    Projection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.4" data-path="../components/structuring_applications_with_components.html">
+            
+                <a href="../components/structuring_applications_with_components.html">
+            
+                    
+                    Structuring Applications with Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.5" data-path="../components/using_other_components.html">
+            
+                <a href="../components/using_other_components.html">
+            
+                    
+                    Using Other Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../directives/">
+            
+                <a href="../directives/">
+            
+                    
+                    Directives
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" data-path="../directives/attribute_directives.html">
+            
+                <a href="../directives/attribute_directives.html">
+            
+                    
+                    Attribute Directives
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1.1" data-path="../directives/ng_style_directive.html">
+            
+                <a href="../directives/ng_style_directive.html">
+            
+                    
+                    NgStyle Directive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.1.2" data-path="../directives/ng_class_directive.html">
+            
+                <a href="../directives/ng_class_directive.html">
+            
+                    
+                    NgClass Directive
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2" data-path="../directives/structural_directives.html">
+            
+                <a href="../directives/structural_directives.html">
+            
+                    
+                    Structural Directives
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.2.1" data-path="../directives/ng_if_directive.html">
+            
+                <a href="../directives/ng_if_directive.html">
+            
+                    
+                    NgIf Directive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2.2" data-path="../directives/ng_for_directive.html">
+            
+                <a href="../directives/ng_for_directive.html">
+            
+                    
+                    NgFor Directive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2.3" data-path="../directives/ng_switch_directives.html">
+            
+                <a href="../directives/ng_switch_directives.html">
+            
+                    
+                    NgSwitch Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2.4" data-path="../directives/using_multiple_structural_directives.html">
+            
+                <a href="../directives/using_multiple_structural_directives.html">
+            
+                    
+                    Using Multiple Structural Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../advanced-components/">
+            
+                <a href="../advanced-components/">
+            
+                    
+                    Advanced Components
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1.1" data-path="../advanced-components/component_lifecycle.html">
+            
+                <a href="../advanced-components/component_lifecycle.html">
+            
+                    
+                    Component Lifecycle
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.2" data-path="../advanced-components/access_child_components.html">
+            
+                <a href="../advanced-components/access_child_components.html">
+            
+                    
+                    Accessing Other Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.3" data-path="../advanced-components/view_encapsulation.html">
+            
+                <a href="../advanced-components/view_encapsulation.html">
+            
+                    
+                    View Encapsulation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.4" data-path="../advanced-components/elementref.html">
+            
+                <a href="../advanced-components/elementref.html">
+            
+                    
+                    ElementRef
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Observables
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="9.1.1" data-path="using_observables.html">
+            
+                <a href="using_observables.html">
+            
+                    
+                    Using Observables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="error_handling.html">
+            
+                <a href="error_handling.html">
+            
+                    
+                    Error Handling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.3" data-path="disposing_subscriptions_and_releasing_resources.html">
+            
+                <a href="disposing_subscriptions_and_releasing_resources.html">
+            
+                    
+                    Disposing Subscriptions and Releasing Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.4" data-path="observables_vs_promises.html">
+            
+                <a href="observables_vs_promises.html">
+            
+                    
+                    Observables vs Promises
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.5" data-path="using_observables_from_other_sources.html">
+            
+                <a href="using_observables_from_other_sources.html">
+            
+                    
+                    Using Observables From Other Sources
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.6" data-path="observables_array_operations.html">
+            
+                <a href="observables_array_operations.html">
+            
+                    
+                    Observables Array Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.7" data-path="cold_vs_hot_observables.html">
+            
+                <a href="cold_vs_hot_observables.html">
+            
+                    
+                    Cold vs Hot Observables
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.8" data-path="summary.html">
+            
+                <a href="summary.html">
+            
+                    
+                    Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="10.1" data-path="../di/">
+            
+                <a href="../di/">
+            
+                    
+                    Angular Dependency Injection
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1.1" data-path="../di/what_is_di.html">
+            
+                <a href="../di/what_is_di.html">
+            
+                    
+                    What is DI?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.2" data-path="../di/di_framework.html">
+            
+                <a href="../di/di_framework.html">
+            
+                    
+                    DI Framework
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.3" data-path="../di/angular2/">
+            
+                <a href="../di/angular2/">
+            
+                    
+                    Angular's DI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1.3.1" data-path="../di/angular2/inject_and_injectable.html">
+            
+                <a href="../di/angular2/inject_and_injectable.html">
+            
+                    
+                    @Inject() and @Injectable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.3.2" data-path="../di/angular2/injection_beyond_classes.html">
+            
+                <a href="../di/angular2/injection_beyond_classes.html">
+            
+                    
+                    Injection Beyond Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.3.3" data-path="../di/angular2/avoiding_collisions_opaque_token.html">
+            
+                <a href="../di/angular2/avoiding_collisions_opaque_token.html">
+            
+                    
+                    Avoiding Injection Collisions: OpaqueToken
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.3.4" data-path="../di/angular2/the_injector_tree.html">
+            
+                <a href="../di/angular2/the_injector_tree.html">
+            
+                    
+                    The Injector Tree
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../http/">
+            
+                <a href="../http/">
+            
+                    
+                    Http
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.1" data-path="../http/making_requests.html">
+            
+                <a href="../http/making_requests.html">
+            
+                    
+                    Making Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2" data-path="../http/catching-rejections/">
+            
+                <a href="../http/catching-rejections/">
+            
+                    
+                    Catching Rejections
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.2.1" data-path="../http/catching-rejections/catch_and_release.html">
+            
+                <a href="../http/catching-rejections/catch_and_release.html">
+            
+                    
+                    Catch and Release
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.2" data-path="../http/catching-rejections/cancel_request.html">
+            
+                <a href="../http/catching-rejections/cancel_request.html">
+            
+                    
+                    Cancel a Request
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2.3" data-path="../http/catching-rejections/retry.html">
+            
+                <a href="../http/catching-rejections/retry.html">
+            
+                    
+                    Retry
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.3" data-path="../http/search_with_flatmap.html">
+            
+                <a href="../http/search_with_flatmap.html">
+            
+                    
+                    Search with flatMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.4" data-path="../http/search_with_switchmap.html">
+            
+                <a href="../http/search_with_switchmap.html">
+            
+                    
+                    Enhancing Search with switchMap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.5" data-path="../http/requests_as_promises.html">
+            
+                <a href="../http/requests_as_promises.html">
+            
+                    
+                    Requests as Promises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="12.1" data-path="../change-detection/">
+            
+                <a href="../change-detection/">
+            
+                    
+                    Change Detection
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="12.1.1" data-path="../change-detection/angular_1_vs_angular_2.html">
+            
+                <a href="../change-detection/angular_1_vs_angular_2.html">
+            
+                    
+                    Change Detection Strategies in Angular 1 vs Angular 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.2" data-path="../change-detection/how_change_detection_works.html">
+            
+                <a href="../change-detection/how_change_detection_works.html">
+            
+                    
+                    How Change Detection Works
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.3" data-path="../change-detection/change_detector_classes.html">
+            
+                <a href="../change-detection/change_detector_classes.html">
+            
+                    
+                    Change Detector Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.4" data-path="../change-detection/change_detection_strategy_onpush.html">
+            
+                <a href="../change-detection/change_detection_strategy_onpush.html">
+            
+                    
+                    Change Detection Strategy: OnPush
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.5" data-path="../change-detection/enforcing_immutability.html">
+            
+                <a href="../change-detection/enforcing_immutability.html">
+            
+                    
+                    Enforcing Immutability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.6" data-path="../change-detection/additional_resources.html">
+            
+                <a href="../change-detection/additional_resources.html">
+            
+                    
+                    Additional Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="../zones/">
+            
+                <a href="../zones/">
+            
+                    
+                    Zone.js
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="../advanced-angular/">
+            
+                <a href="../advanced-angular/">
+            
+                    
+                    Advanced Angular
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1.1" data-path="../advanced-angular/directives/">
+            
+                <a href="../advanced-angular/directives/">
+            
+                    
+                    Directives
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1.1.1" data-path="../advanced-angular/directives/creating_an_attribute_directive.html">
+            
+                <a href="../advanced-angular/directives/creating_an_attribute_directive.html">
+            
+                    
+                    Creating an Attribute Directive
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1.1.1.1" data-path="../advanced-angular/directives/listening_to_an_element_host.html">
+            
+                <a href="../advanced-angular/directives/listening_to_an_element_host.html">
+            
+                    
+                    Listening to an Element Host
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.1.1.1.2" data-path="../advanced-angular/directives/setting_properties_in_a_directive.html">
+            
+                <a href="../advanced-angular/directives/setting_properties_in_a_directive.html">
+            
+                    
+                    Setting Properties in a Directive
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="14.1.1.2" data-path="../advanced-angular/directives/creating_a_structural_directive.html">
+            
+                <a href="../advanced-angular/directives/creating_a_structural_directive.html">
+            
+                    
+                    Creating a Structural Directive
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1.1.2.1" data-path="../advanced-angular/directives/view_containers_and_embedded_views.html">
+            
+                <a href="../advanced-angular/directives/view_containers_and_embedded_views.html">
+            
+                    
+                    View Containers and Embedded Views
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.1.1.2.2" data-path="../advanced-angular/directives/providing_context_variables_to_directives.html">
+            
+                <a href="../advanced-angular/directives/providing_context_variables_to_directives.html">
+            
+                    
+                    Providing Context Variables to Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="14.1.2" data-path="../aot/">
+            
+                <a href="../aot/">
+            
+                    
+                    AoT
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1.2.1" data-path="../aot/aot_limitations.html">
+            
+                <a href="../aot/aot_limitations.html">
+            
+                    
+                    AoT limitations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.1.2.2" data-path="../aot/aot_config.html">
+            
+                <a href="../aot/aot_config.html">
+            
+                    
+                    AoT Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="15.1" data-path="../immutable/">
+            
+                <a href="../immutable/">
+            
+                    
+                    Immutable.js
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.1" data-path="../immutable/what_is_immutability.html">
+            
+                <a href="../immutable/what_is_immutability.html">
+            
+                    
+                    What is Immutability?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.2" data-path="../immutable/the_case_for_immutability.html">
+            
+                <a href="../immutable/the_case_for_immutability.html">
+            
+                    
+                    The Case for Immutability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.3" data-path="../immutable/javascript-solutions/">
+            
+                <a href="../immutable/javascript-solutions/">
+            
+                    
+                    JavaScript Solutions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.3.1" data-path="../immutable/javascript-solutions/object_assign.html">
+            
+                <a href="../immutable/javascript-solutions/object_assign.html">
+            
+                    
+                    Object.assign
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.3.2" data-path="../immutable/javascript-solutions/object_freeze.html">
+            
+                <a href="../immutable/javascript-solutions/object_freeze.html">
+            
+                    
+                    Object.freeze
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.4" data-path="../immutable/immutable-js/">
+            
+                <a href="../immutable/immutable-js/">
+            
+                    
+                    Immutable.js Basics
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.4.1" data-path="../immutable/immutable-js/maps/">
+            
+                <a href="../immutable/immutable-js/maps/">
+            
+                    
+                    Immutable.Map
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.4.1.1" data-path="../immutable/immutable-js/maps/map_merge.html">
+            
+                <a href="../immutable/immutable-js/maps/map_merge.html">
+            
+                    
+                    Map.merge
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.4.2" data-path="../immutable/immutable-js/nested-objects/">
+            
+                <a href="../immutable/immutable-js/nested-objects/">
+            
+                    
+                    Nested Objects
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.4.2.1" data-path="../immutable/immutable-js/nested-objects/deleting_keys.html">
+            
+                <a href="../immutable/immutable-js/nested-objects/deleting_keys.html">
+            
+                    
+                    Deleting Keys
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.4.2.2" data-path="../immutable/immutable-js/nested-objects/maps_are_iterable.html">
+            
+                <a href="../immutable/immutable-js/nested-objects/maps_are_iterable.html">
+            
+                    
+                    Maps are Iterable
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.4.3" data-path="../immutable/immutable-js/lists.html">
+            
+                <a href="../immutable/immutable-js/lists.html">
+            
+                    
+                    Immutable.List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.4.4" data-path="../immutable/immutable-js/performance_transient_changes.html">
+            
+                <a href="../immutable/immutable-js/performance_transient_changes.html">
+            
+                    
+                    Performance and Transient Changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.4.5" data-path="../immutable/immutable-js/official_documentation.html">
+            
+                <a href="../immutable/immutable-js/official_documentation.html">
+            
+                    
+                    Official Documentation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="16.1" data-path="../pipes/">
+            
+                <a href="../pipes/">
+            
+                    
+                    Pipes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1.1" data-path="../pipes/using_pipes.html">
+            
+                <a href="../pipes/using_pipes.html">
+            
+                    
+                    Using Pipes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.1.2" data-path="../pipes/custom_pipes.html">
+            
+                <a href="../pipes/custom_pipes.html">
+            
+                    
+                    Custom Pipes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="16.1.3" data-path="../pipes/stateful_and_async_pipes.html">
+            
+                <a href="../pipes/stateful_and_async_pipes.html">
+            
+                    
+                    Stateful Pipes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="17.1" data-path="../forms/">
+            
+                <a href="../forms/">
+            
+                    
+                    Forms
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="17.1.1" data-path="../forms/getting-started.html">
+            
+                <a href="../forms/getting-started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.2" data-path="../forms/template-driven/template-driven_forms.html">
+            
+                <a href="../forms/template-driven/template-driven_forms.html">
+            
+                    
+                    Template-Driven Forms
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="17.1.2.1" data-path="../forms/template-driven/nested-form-data.html">
+            
+                <a href="../forms/template-driven/nested-form-data.html">
+            
+                    
+                    Nesting Form Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.2.2" data-path="../forms/template-driven/template-model-binding.html">
+            
+                <a href="../forms/template-driven/template-model-binding.html">
+            
+                    
+                    Using Template Model Binding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.2.3" data-path="../forms/template-driven/validating_forms.html">
+            
+                <a href="../forms/template-driven/validating_forms.html">
+            
+                    
+                    Validating Template-Driven Forms
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.3" data-path="../forms/reactive-forms/reactive-forms.html">
+            
+                <a href="../forms/reactive-forms/reactive-forms.html">
+            
+                    
+                    Reactive/Model-Driven Forms
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="17.1.3.1" data-path="../forms/reactive-forms/reactive-forms_basics.html">
+            
+                <a href="../forms/reactive-forms/reactive-forms_basics.html">
+            
+                    
+                    FormBuilder Basics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.3.2" data-path="../forms/reactive-forms/reactive-forms_validation.html">
+            
+                <a href="../forms/reactive-forms/reactive-forms_validation.html">
+            
+                    
+                    Validating FormBuilder Forms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.3.3" data-path="../forms/reactive-forms/reactive-forms_custom_validation.html">
+            
+                <a href="../forms/reactive-forms/reactive-forms_custom_validation.html">
+            
+                    
+                    FormBuilder Custom Validation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17.1.4" data-path="../forms/ux/visual_cues_for_users.html">
+            
+                <a href="../forms/ux/visual_cues_for_users.html">
+            
+                    
+                    Visual Cues for Users
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="18.1" data-path="../modules/">
+            
+                <a href="../modules/">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="18.1.1" data-path="../modules/introduction.html">
+            
+                <a href="../modules/introduction.html">
+            
+                    
+                    What is an Angular Module?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="18.1.2" data-path="../modules/multiple-elements.html">
+            
+                <a href="../modules/multiple-elements.html">
+            
+                    
+                    Adding Components, Pipes and Services to a Module
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="18.1.3" data-path="../modules/feature-modules.html">
+            
+                <a href="../modules/feature-modules.html">
+            
+                    
+                    Creating a Feature Module
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="18.1.4" data-path="../modules/directive-duplications.html">
+            
+                <a href="../modules/directive-duplications.html">
+            
+                    
+                    Directive Duplications
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="18.1.5" data-path="../modules/lazy-loading-module.html">
+            
+                <a href="../modules/lazy-loading-module.html">
+            
+                    
+                    Lazy Loading a Module
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="18.1.6" data-path="../modules/lazy-load-di.html">
+            
+                <a href="../modules/lazy-load-di.html">
+            
+                    
+                    Lazy Loading and the Dependency Injection Tree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="18.1.7" data-path="../modules/shared-modules-di.html">
+            
+                <a href="../modules/shared-modules-di.html">
+            
+                    
+                    Shared Modules and Dependency Injection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="18.1.8" data-path="../modules/shared-di-tree.html">
+            
+                <a href="../modules/shared-di-tree.html">
+            
+                    
+                    Sharing the Same Dependency Injection Tree
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="19.1" data-path="../routing/">
+            
+                <a href="../routing/">
+            
+                    
+                    Routing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="19.1.1" data-path="../routing/why_routing.html">
+            
+                <a href="../routing/why_routing.html">
+            
+                    
+                    Why Routing?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.2" data-path="../routing/config.html">
+            
+                <a href="../routing/config.html">
+            
+                    
+                    Configuring Routes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.3" data-path="../routing/redirects.html">
+            
+                <a href="../routing/redirects.html">
+            
+                    
+                    Redirecting the Router to Another Route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.4" data-path="../routing/routerlink.html">
+            
+                <a href="../routing/routerlink.html">
+            
+                    
+                    Defining Links Between Routes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.5" data-path="../routing/routeroutlet.html">
+            
+                <a href="../routing/routeroutlet.html">
+            
+                    
+                    Dynamically Adding Route Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.6" data-path="../routing/routeparams.html">
+            
+                <a href="../routing/routeparams.html">
+            
+                    
+                    Using Route Parameters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.7" data-path="../routing/child_routes.html">
+            
+                <a href="../routing/child_routes.html">
+            
+                    
+                    Defining Child Routes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.8" data-path="../routing/route_guards.html">
+            
+                <a href="../routing/route_guards.html">
+            
+                    
+                    Controlling Access to or from a Route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.9" data-path="../routing/query_params.html">
+            
+                <a href="../routing/query_params.html">
+            
+                    
+                    Passing Optional Parameters to a Route
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="19.1.10" data-path="../routing/aux-routes.html">
+            
+                <a href="../routing/aux-routes.html">
+            
+                    
+                    Using Auxiliary Routes
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="20.1" data-path="../state-management/">
+            
+                <a href="../state-management/">
+            
+                    
+                    State Management
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="20.1.1" data-path="../state-management/ngrx/">
+            
+                <a href="../state-management/ngrx/">
+            
+                    
+                    Redux and @ngrx
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="20.1.1.1" data-path="../state-management/ngrx/adding_ngrx_to_your_project.html">
+            
+                <a href="../state-management/ngrx/adding_ngrx_to_your_project.html">
+            
+                    
+                    Adding @ngrx to your Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.2" data-path="../state-management/ngrx/defining_your_main_application_state.html">
+            
+                <a href="../state-management/ngrx/defining_your_main_application_state.html">
+            
+                    
+                    Defining your Main Application State
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.3" data-path="../state-management/ngrx/example_application.html">
+            
+                <a href="../state-management/ngrx/example_application.html">
+            
+                    
+                    Example Application
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.4" data-path="../state-management/ngrx/reading_your_application_state_using_selectors.html">
+            
+                <a href="../state-management/ngrx/reading_your_application_state_using_selectors.html">
+            
+                    
+                    Reading your Application State using Selectors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.5" data-path="../state-management/ngrx/actions.html">
+            
+                <a href="../state-management/ngrx/actions.html">
+            
+                    
+                    Actions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.6" data-path="../state-management/ngrx/modifying_your_application_state_by_dispatching_actions.html">
+            
+                <a href="../state-management/ngrx/modifying_your_application_state_by_dispatching_actions.html">
+            
+                    
+                    Modifying your Application State by Dispatching Actions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.7" data-path="../state-management/ngrx/reducers_and_pure_functions.html">
+            
+                <a href="../state-management/ngrx/reducers_and_pure_functions.html">
+            
+                    
+                    Reducers and Pure Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.8" data-path="../state-management/ngrx/reducers_as_state_management.html">
+            
+                <a href="../state-management/ngrx/reducers_as_state_management.html">
+            
+                    
+                    Reducers as State Management
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.9" data-path="../state-management/ngrx/creating_your_applications_root_reducer.html">
+            
+                <a href="../state-management/ngrx/creating_your_applications_root_reducer.html">
+            
+                    
+                    Creating your Application's Root Reducer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.10" data-path="../state-management/ngrx/configuring_your_application.html">
+            
+                <a href="../state-management/ngrx/configuring_your_application.html">
+            
+                    
+                    Configuring your Application
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.11" data-path="../state-management/ngrx/implementing_components.html">
+            
+                <a href="../state-management/ngrx/implementing_components.html">
+            
+                    
+                    Implementing Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.12" data-path="../state-management/ngrx/component_architecture.html">
+            
+                <a href="../state-management/ngrx/component_architecture.html">
+            
+                    
+                    Component Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.13" data-path="../state-management/ngrx/side_effects.html">
+            
+                <a href="../state-management/ngrx/side_effects.html">
+            
+                    
+                    Side Effects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="20.1.1.14" data-path="../state-management/ngrx/getting_more_from_redux_and_ngrx.html">
+            
+                <a href="../state-management/ngrx/getting_more_from_redux_and_ngrx.html">
+            
+                    
+                    Getting More From Redux and @ngrx
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="21.1" data-path="../testing/">
+            
+                <a href="../testing/">
+            
+                    
+                    TDD Testing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="21.1.1" data-path="../testing/intro-to-tdd/toolchain.html">
+            
+                <a href="../testing/intro-to-tdd/toolchain.html">
+            
+                    
+                    The Testing Toolchain
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.2" data-path="../testing/intro-to-tdd/setup/">
+            
+                <a href="../testing/intro-to-tdd/setup/">
+            
+                    
+                    Test Setup
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="21.1.2.1" data-path="../testing/intro-to-tdd/setup/filename-conventions.html">
+            
+                <a href="../testing/intro-to-tdd/setup/filename-conventions.html">
+            
+                    
+                    Filename Conventions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.2.2" data-path="../testing/intro-to-tdd/setup/karma-config.html">
+            
+                <a href="../testing/intro-to-tdd/setup/karma-config.html">
+            
+                    
+                    Karma Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.2.3" data-path="../testing/intro-to-tdd/setup/testbed-configuration.html">
+            
+                <a href="../testing/intro-to-tdd/setup/testbed-configuration.html">
+            
+                    
+                    TestBed Configuration (Optional)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.2.4" data-path="../testing/intro-to-tdd/setup/typings.html">
+            
+                <a href="../testing/intro-to-tdd/setup/typings.html">
+            
+                    
+                    Typings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.2.5" data-path="../testing/intro-to-tdd/setup/execute.html">
+            
+                <a href="../testing/intro-to-tdd/setup/execute.html">
+            
+                    
+                    Executing Test Scripts
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.3" data-path="../testing/intro-to-tdd/simple-test.html">
+            
+                <a href="../testing/intro-to-tdd/simple-test.html">
+            
+                    
+                    Simple Test
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.4" data-path="../testing/intro-to-tdd/using-chai.html">
+            
+                <a href="../testing/intro-to-tdd/using-chai.html">
+            
+                    
+                    Using Chai
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.5" data-path="../testing/components/">
+            
+                <a href="../testing/components/">
+            
+                    
+                    Testing Components
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="21.1.5.1" data-path="../testing/components/verify.html">
+            
+                <a href="../testing/components/verify.html">
+            
+                    
+                    Verifying Methods and Properties
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.5.2" data-path="../testing/components/injecting-dependencies.html">
+            
+                <a href="../testing/components/injecting-dependencies.html">
+            
+                    
+                    Injecting Dependencies and DOM Changes
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="21.1.5.2.1" data-path="../testing/components/overriding.html">
+            
+                <a href="../testing/components/overriding.html">
+            
+                    
+                    Overriding Components for Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.5.3" data-path="../testing/components/async.html">
+            
+                <a href="../testing/components/async.html">
+            
+                    
+                    Testing Asynchronous Actions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.5.4" data-path="../testing/components/refactor.html">
+            
+                <a href="../testing/components/refactor.html">
+            
+                    
+                    Refactoring Hard-to-Test Code
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.6" data-path="../testing/services/">
+            
+                <a href="../testing/services/">
+            
+                    
+                    Testing Services
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="21.1.6.1" data-path="../testing/services/strategies.html">
+            
+                <a href="../testing/services/strategies.html">
+            
+                    
+                    Testing Strategies for Services
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.6.2" data-path="../testing/services/http.html">
+            
+                <a href="../testing/services/http.html">
+            
+                    
+                    Testing HTTP Requests
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="21.1.6.2.1" data-path="../testing/services/mockbackend.html">
+            
+                <a href="../testing/services/mockbackend.html">
+            
+                    
+                    Using MockBackend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.6.2.2" data-path="../testing/services/alt-http-mocking.html">
+            
+                <a href="../testing/services/alt-http-mocking.html">
+            
+                    
+                    Alternative Mocking Strategy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.6.2.3" data-path="../testing/services/json-xhr.html">
+            
+                <a href="../testing/services/json-xhr.html">
+            
+                    
+                    Testing JSONP and XHR Back-Ends
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.6.3" data-path="../testing/services/async-execution.html">
+            
+                <a href="../testing/services/async-execution.html">
+            
+                    
+                    Executing Tests Asynchronously
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.7" data-path="../testing/redux/">
+            
+                <a href="../testing/redux/">
+            
+                    
+                    Testing Redux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="21.1.7.1" data-path="../testing/redux/simple-actions.html">
+            
+                <a href="../testing/redux/simple-actions.html">
+            
+                    
+                    Testing Simple Actions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.7.2" data-path="../testing/redux/complex-actions.html">
+            
+                <a href="../testing/redux/complex-actions.html">
+            
+                    
+                    Testing Complex Actions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.7.3" data-path="../testing/redux/reducers.html">
+            
+                <a href="../testing/redux/reducers.html">
+            
+                    
+                    Testing Reducers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="21.1.7.4" data-path="../testing/redux/after-thoughts.html">
+            
+                <a href="../testing/redux/after-thoughts.html">
+            
+                    
+                    Afterthoughts
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="22.1" data-path="../migrate/">
+            
+                <a href="../migrate/">
+            
+                    
+                    Migrating Angular 1.x Projects to Angular 2
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="22.1.1" data-path="../migrate/migration-prep/">
+            
+                <a href="../migrate/migration-prep/">
+            
+                    
+                    Migration Prep
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="22.1.1.1" data-path="../migrate/migration-prep/upgrade_to_angular_1_3.html">
+            
+                <a href="../migrate/migration-prep/upgrade_to_angular_1_3.html">
+            
+                    
+                    Upgrading To Angular 1.3+ Style
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.1.2" data-path="../migrate/migration-prep/use_webpack.html">
+            
+                <a href="../migrate/migration-prep/use_webpack.html">
+            
+                    
+                    Using Webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.1.3" data-path="../migrate/migration-prep/migrate_to_typescript.html">
+            
+                <a href="../migrate/migration-prep/migrate_to_typescript.html">
+            
+                    
+                    Migrating To TypeScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.2" data-path="../migrate/choose_a_path.html">
+            
+                <a href="../migrate/choose_a_path.html">
+            
+                    
+                    Choosing an Upgrade Path
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.3" data-path="../migrate/total_conversion.html">
+            
+                <a href="../migrate/total_conversion.html">
+            
+                    
+                    Avoiding Total Conversion
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.4" data-path="../migrate/ng-metadata/">
+            
+                <a href="../migrate/ng-metadata/">
+            
+                    
+                    Using ng-metadata (Angular 1.x Using 2 Style)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="22.1.4.1" data-path="../migrate/ng-metadata/bootstrap.html">
+            
+                <a href="../migrate/ng-metadata/bootstrap.html">
+            
+                    
+                    Bootstrapping ng-metadata
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.4.2" data-path="../migrate/ng-metadata/components-and-services.html">
+            
+                <a href="../migrate/ng-metadata/components-and-services.html">
+            
+                    
+                    Components and Services
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5" data-path="../migrate/ng-upgrade/">
+            
+                <a href="../migrate/ng-upgrade/">
+            
+                    
+                    Using ng-upgrade (Angular 1.x Coexisting With Angular 2)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="22.1.5.1" data-path="../migrate/ng-upgrade/order_of_operations.html">
+            
+                <a href="../migrate/ng-upgrade/order_of_operations.html">
+            
+                    
+                    Order of Operations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5.2" data-path="../migrate/ng-upgrade/replacing_services.html">
+            
+                <a href="../migrate/ng-upgrade/replacing_services.html">
+            
+                    
+                    Replacing Services with TypeScript Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5.3" data-path="../migrate/ng-upgrade/bootstrap.html">
+            
+                <a href="../migrate/ng-upgrade/bootstrap.html">
+            
+                    
+                    Bootstrapping ng-upgrade
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5.4" data-path="../migrate/ng-upgrade/downgrade-component.html">
+            
+                <a href="../migrate/ng-upgrade/downgrade-component.html">
+            
+                    
+                    Downgrading Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5.5" data-path="../migrate/ng-upgrade/upgrade-component.html">
+            
+                <a href="../migrate/ng-upgrade/upgrade-component.html">
+            
+                    
+                    Upgrading Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5.6" data-path="../migrate/ng-upgrade/projection.html">
+            
+                <a href="../migrate/ng-upgrade/projection.html">
+            
+                    
+                    Projecting Angular 1 Content into Angular 2 Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5.7" data-path="../migrate/ng-upgrade/transclusion.html">
+            
+                <a href="../migrate/ng-upgrade/transclusion.html">
+            
+                    
+                    Transcluding Angular 2 Components into Angular 1 Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="22.1.5.8" data-path="../migrate/ng-upgrade/injecting_across_frameworks.html">
+            
+                <a href="../migrate/ng-upgrade/injecting_across_frameworks.html">
+            
+                    
+                    Injecting Across Frameworks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="23.1" data-path="../project-setup/">
+            
+                <a href="../project-setup/">
+            
+                    
+                    Project Setup
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="23.1.1" data-path="../project-setup/webpack.html">
+            
+                <a href="../project-setup/webpack.html">
+            
+                    
+                    Webpack
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="23.1.1.1" data-path="../project-setup/installation_and_usage.html">
+            
+                <a href="../project-setup/installation_and_usage.html">
+            
+                    
+                    Installation and Usage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.1.1.2" data-path="../project-setup/loaders.html">
+            
+                <a href="../project-setup/loaders.html">
+            
+                    
+                    Loaders
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.1.1.3" data-path="../project-setup/plugins.html">
+            
+                <a href="../project-setup/plugins.html">
+            
+                    
+                    Plugins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="23.1.1.4" data-path="../project-setup/summary.html">
+            
+                <a href="../project-setup/summary.html">
+            
+                    
+                    Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="23.1.2" data-path="../project-setup/npm_scripts_integration.html">
+            
+                <a href="../project-setup/npm_scripts_integration.html">
+            
+                    
+                    NPM Scripts Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="24.1" data-path="../cli/">
+            
+                <a href="../cli/">
+            
+                    
+                    Angular CLI
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="24.1.1" data-path="../cli/setup.html">
+            
+                <a href="../cli/setup.html">
+            
+                    
+                    Setup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.2" data-path="../cli/creating-an-app.html">
+            
+                <a href="../cli/creating-an-app.html">
+            
+                    
+                    Creating a New App
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.3" data-path="../cli/serving-the-app.html">
+            
+                <a href="../cli/serving-the-app.html">
+            
+                    
+                    Serving the App
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.4" data-path="../cli/creating-components.html">
+            
+                <a href="../cli/creating-components.html">
+            
+                    
+                    Creating Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.5" data-path="../cli/creating-routes.html">
+            
+                <a href="../cli/creating-routes.html">
+            
+                    
+                    Creating Routes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.6" data-path="../cli/creating-other-things.html">
+            
+                <a href="../cli/creating-other-things.html">
+            
+                    
+                    Creating Other Things
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.7" data-path="../cli/testing.html">
+            
+                <a href="../cli/testing.html">
+            
+                    
+                    Testing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.8" data-path="../cli/linting.html">
+            
+                <a href="../cli/linting.html">
+            
+                    
+                    Linting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.9" data-path="../cli/command-overview.html">
+            
+                <a href="../cli/command-overview.html">
+            
+                    
+                    CLI Command Overview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.10" data-path="../cli/adding-third-party-libraries.html">
+            
+                <a href="../cli/adding-third-party-libraries.html">
+            
+                    
+                    Adding Third Party Libraries
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="24.1.11" data-path="../cli/init.html">
+            
+                <a href="../cli/init.html">
+            
+                    
+                    Integrating an Existing App
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="25.1" data-path="../a11y/">
+            
+                <a href="../a11y/">
+            
+                    
+                    Accessibility in Angular
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="25.1.1" data-path="../a11y/why-a11y.html">
+            
+                <a href="../a11y/why-a11y.html">
+            
+                    
+                    Why Make my Application Accessible?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.2" data-path="../a11y/key-concerns/">
+            
+                <a href="../a11y/key-concerns/">
+            
+                    
+                    Key Concerns of Accessible Web Applications
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="25.1.2.1" data-path="../a11y/key-concerns/semantic-markup.html">
+            
+                <a href="../a11y/key-concerns/semantic-markup.html">
+            
+                    
+                    Semantic Markup
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.2.2" data-path="../a11y/key-concerns/keyboard-accessibility.html">
+            
+                <a href="../a11y/key-concerns/keyboard-accessibility.html">
+            
+                    
+                    Keyboard Accessibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.2.3" data-path="../a11y/key-concerns/visual-assistance.html">
+            
+                <a href="../a11y/key-concerns/visual-assistance.html">
+            
+                    
+                    Visual Assistance
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.3" data-path="../a11y/testing/">
+            
+                <a href="../a11y/testing/">
+            
+                    
+                    Testing for Accessibility
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="25.1.3.1" data-path="../a11y/testing/readable.html">
+            
+                <a href="../a11y/testing/readable.html">
+            
+                    
+                    Is my Application Readable?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.3.2" data-path="../a11y/testing/predictable.html">
+            
+                <a href="../a11y/testing/predictable.html">
+            
+                    
+                    Is my Application Predictable?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.3.3" data-path="../a11y/testing/navigable.html">
+            
+                <a href="../a11y/testing/navigable.html">
+            
+                    
+                    Is my Application Navigable?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.3.4" data-path="../a11y/testing/screen-readers.html">
+            
+                <a href="../a11y/testing/screen-readers.html">
+            
+                    
+                    Testing with Screen Readers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="25.1.4" data-path="../a11y/additional-resources.html">
+            
+                <a href="../a11y/additional-resources.html">
+            
+                    
+                    Additional Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="26.1" data-path="../i18n/">
+            
+                <a href="../i18n/">
+            
+                    
+                    Internationalization in Angular
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="26.1.1" data-path="../i18n/process-and-roles.html">
+            
+                <a href="../i18n/process-and-roles.html">
+            
+                    
+                    What is the process like and how is involved?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.1.2" data-path="../i18n/marking-text-in-templates.html">
+            
+                <a href="../i18n/marking-text-in-templates.html">
+            
+                    
+                    Marking text in our templates
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.1.3" data-path="../i18n/translation-text-extraction.html">
+            
+                <a href="../i18n/translation-text-extraction.html">
+            
+                    
+                    Extracting translation text using the Angular CLI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.1.4" data-path="../i18n/import-translation-files.html">
+            
+                <a href="../i18n/import-translation-files.html">
+            
+                    
+                    How to import the completed translation files
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="26.1.4.1" data-path="../i18n/import-using-aot.html">
+            
+                <a href="../i18n/import-using-aot.html">
+            
+                    
+                    Using the AoT Compiler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="26.1.4.2" data-path="../i18n/import-using-jit.html">
+            
+                <a href="../i18n/import-using-jit.html">
+            
+                    
+                    Using the JiT Compiler
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="27.1" data-path="../glossary.html">
+            
+                <a href="../glossary.html">
+            
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="27.2" data-path="../further-reading.html">
+            
+                <a href="../further-reading.html">
+            
+                    
+                    Further Reading And Reference
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Using Observables</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="using-observables">Using Observables</h1>
+<p>Let&apos;s take a look at a basic example of how to create and use an <code>Observable</code> in an Angular component:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@angular/core&apos;</span>;
+<span class="hljs-keyword">import</span> {Observable} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;rxjs/Observable&apos;</span>;
+
+@Component({
+    <span class="hljs-attr">selector</span>: <span class="hljs-string">&apos;app&apos;</span>,
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      &lt;b&gt;Angular Component Using Observables!&lt;/b&gt;
+
+      &lt;h6 style=&quot;margin-bottom: 0&quot;&gt;VALUES:&lt;/h6&gt;
+      &lt;div *ngFor=&quot;let value of values&quot;&gt;- {{ value }}&lt;/div&gt;
+
+      &lt;h6 style=&quot;margin-bottom: 0&quot;&gt;ERRORs:&lt;/h6&gt;
+      &lt;div&gt;Errors: {{anyErrors}}&lt;/div&gt;
+
+      &lt;h6 style=&quot;margin-bottom: 0&quot;&gt;FINISHED:&lt;/h6&gt;
+      &lt;div&gt;Finished: {{ finished }}&lt;/div&gt;
+
+      &lt;button style=&quot;margin-top: 2rem;&quot; (click)=&quot;init()&quot;&gt;Init&lt;/button&gt;
+    `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> </span>{
+
+  private data: Observable&lt;<span class="hljs-built_in">Array</span>&lt;number&gt;&gt;;
+  private values: <span class="hljs-built_in">Array</span>&lt;number&gt; = [];
+  private anyErrors: boolean;
+  private finished: boolean;
+
+  <span class="hljs-keyword">constructor</span>() {
+  }
+
+  init() {
+      <span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> Observable(<span class="hljs-function"><span class="hljs-params">observer</span> =&gt;</span> {
+          setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+              observer.next(<span class="hljs-number">42</span>);
+          }, <span class="hljs-number">1000</span>);
+
+          setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+              observer.next(<span class="hljs-number">43</span>);
+          }, <span class="hljs-number">2000</span>);
+
+          setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+              observer.complete();
+          }, <span class="hljs-number">3000</span>);
+      });
+
+      <span class="hljs-keyword">let</span> subscription = <span class="hljs-keyword">this</span>.data.subscribe(
+          <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> <span class="hljs-keyword">this</span>.values.push(value),
+          error =&gt; <span class="hljs-keyword">this</span>.anyErrors = <span class="hljs-literal">true</span>,
+          () =&gt; <span class="hljs-keyword">this</span>.finished = <span class="hljs-literal">true</span>
+      );
+  }
+
+}
+</code></pre>
+<p><a href="http://plnkr.co/edit/SA25mG?p=preview" target="_blank">View Example</a></p>
+<iframe class="no-pdf" style="width: 100%; height: 300px" src="http://embed.plnkr.co/SA25mG/" frameborder="0" allowfullscren="allowfullscren"></iframe>
+
+<p>First we import <code>Observable</code> into our component from <code>rxjs/Observable</code>. Next, in our constructor we create a new <code>Observable</code>. Note that this creates an <code>Observable</code> data type that contains data of <code>number</code> type. This illustrates the stream of data that <code>Observables</code> offer as well as giving us the ability to maintain integrity of the type of data we are expecting to receive.</p>
+<p>Next we call <code>subscribe</code> on this <code>Observable</code> which allows us to listen in on any data that is coming through. In subscribing we use three distinctive callbacks: the first one is invoked when receiving new values, the second for any errors that arise and the last represents the function to be invoked when the sequence of incoming data is complete and successful.</p>
+<p>We can also use <code>forEach</code> to listen for incoming data. The key difference between <code>forEach</code> and <code>subscribe</code> is in how the error and completion callbacks are handled. The <code>forEach</code> call only accepts the &apos;next value&apos; callback as an argument; it then returns a promise instead of a subscription.</p>
+<p>When the <code>Observable</code> completes, the promise resolves. When the <code>Observable</code> encounters an error, the promise is rejected.</p>
+<p>You can think of <code>Observable.of(1, 2, 3).forEach(doSomething)</code> as being semantically equivalent to:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
+  Observable.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>).subscribe(
+    doSomething,
+    reject,
+    resolve);
+});
+</code></pre>
+<p>The <code>forEach</code> pattern is useful for a sequence of events you only expect to happen once.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApp</span> </span>{
+
+  private data: Observable&lt;<span class="hljs-built_in">Array</span>&lt;number&gt;&gt;;
+  private values: <span class="hljs-built_in">Array</span>&lt;number&gt; = [];
+  private anyErrors: boolean;
+  private finished: boolean;
+
+  <span class="hljs-keyword">constructor</span>() {
+  }
+
+  init() {
+      <span class="hljs-keyword">this</span>.data = <span class="hljs-keyword">new</span> Observable(<span class="hljs-function"><span class="hljs-params">observer</span> =&gt;</span> {
+          setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+              observer.next(<span class="hljs-number">42</span>);
+          }, <span class="hljs-number">1000</span>);
+
+          setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+              observer.next(<span class="hljs-number">43</span>);
+          }, <span class="hljs-number">2000</span>);
+
+          setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+              observer.complete();
+          }, <span class="hljs-number">3000</span>);
+
+          <span class="hljs-keyword">this</span>.status = <span class="hljs-string">&quot;Started&quot;</span>;
+      });
+
+      <span class="hljs-keyword">let</span> subscription = <span class="hljs-keyword">this</span>.data.forEach(<span class="hljs-function"><span class="hljs-params">v</span> =&gt;</span> <span class="hljs-keyword">this</span>.values.push(v))
+            .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.status = <span class="hljs-string">&quot;Ended&quot;</span>);
+  }
+
+}
+</code></pre>
+<p><a href="http://plnkr.co/edit/eJWIJd?p=preview" target="_blank">View Example</a></p>
+<iframe class="no-pdf" style="width: 100%; height: 300px" src="http://embed.plnkr.co/eJWIJd/" frameborder="0" allowfullscren="allowfullscren"></iframe>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Observables">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="error_handling.html" class="navigation navigation-next " aria-label="Next page: Error Handling">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Using Observables","level":"9.1.1","depth":2,"next":{"title":"Error Handling","level":"9.1.2","depth":2,"path":"handout/observables/error_handling.md","ref":"handout/observables/error_handling.md","articles":[]},"previous":{"title":"Observables","level":"9.1","depth":1,"path":"handout/observables/README.md","ref":"handout/observables/README.md","articles":[{"title":"Using Observables","level":"9.1.1","depth":2,"path":"handout/observables/using_observables.md","ref":"handout/observables/using_observables.md","articles":[]},{"title":"Error Handling","level":"9.1.2","depth":2,"path":"handout/observables/error_handling.md","ref":"handout/observables/error_handling.md","articles":[]},{"title":"Disposing Subscriptions and Releasing Resources","level":"9.1.3","depth":2,"path":"handout/observables/disposing_subscriptions_and_releasing_resources.md","ref":"handout/observables/disposing_subscriptions_and_releasing_resources.md","articles":[]},{"title":"Observables vs Promises","level":"9.1.4","depth":2,"path":"handout/observables/observables_vs_promises.md","ref":"handout/observables/observables_vs_promises.md","articles":[]},{"title":"Using Observables From Other Sources","level":"9.1.5","depth":2,"path":"handout/observables/using_observables_from_other_sources.md","ref":"handout/observables/using_observables_from_other_sources.md","articles":[]},{"title":"Observables Array Operations","level":"9.1.6","depth":2,"path":"handout/observables/observables_array_operations.md","ref":"handout/observables/observables_array_operations.md","articles":[]},{"title":"Cold vs Hot Observables","level":"9.1.7","depth":2,"path":"handout/observables/cold_vs_hot_observables.md","ref":"handout/observables/cold_vs_hot_observables.md","articles":[]},{"title":"Summary","level":"9.1.8","depth":2,"path":"handout/observables/summary.md","ref":"handout/observables/summary.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["image-captions","highlight","theme-rangle-io","ga","versions","comment"],"styles":{"ebook":"styles/ebook.css","pdf":"styles/pdf.css","website":"styles/website.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"theme-rangle-io":{"showLevel":true,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"ga":{"configuration":"auto","token":"UA-41067508-7"},"versions":{"type":"branches"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"comment":{"highlightCommented":true},"image-captions":{"images":{"1.1.1":{"skip":true}},"variable_name":"_pictures"}},"github":"rangle/ngCourse2","theme":"theme-rangle-io","author":"Rangle.io","pdf":{"pageNumbers":true,"fontSize":16,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"intro.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{"_pictures":[{"backlink":"./intro.html#fig1.1.1","level":"1.1","list_caption":"Figure: Rangle's Angular Training Book","alt":"ngcourse2","nro":1,"url":"./img/book-cover.png","index":1,"caption_template":"Figure: _CAPTION_","label":"Rangle's Angular Training Book","attributes":{},"title":"Rangle's Angular Training Book","skip":true,"key":"1.1.1"},{"backlink":"handout/architect/functional_forms.html#fig2.1.1.1","level":"2.1.1","list_caption":"Figure: Redux Flow","alt":"Redux Flow","nro":2,"url":"../images/redux_flow_diagram.png","index":1,"caption_template":"Figure: _CAPTION_","label":"Redux Flow","attributes":{},"skip":false,"key":"2.1.1.1"},{"backlink":"handout/features/index.html#fig3.1.1","level":"3.1","list_caption":"Figure: ES6 and TypeScript","alt":"ES6/TypeScript","nro":3,"url":"../images/es6-typescript.png","index":1,"caption_template":"Figure: _CAPTION_","label":"ES6 and TypeScript","attributes":{},"title":"ES6 and TypeScript","skip":false,"key":"3.1.1"},{"backlink":"handout/tooling/index.html#fig4.1.1","level":"4.1","list_caption":"Figure: Hand Tools by M338 is licensed under Public Domain (http://commons.wikimedia.org/wiki/File:Hand_tools.jpg)","alt":"Hand Tools by M338 is licensed under Public Domain (http://commons.wikimedia.org/wiki/File:Hand_tools.jpg)","nro":4,"url":"../images/tools.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"Hand Tools by M338 is licensed under Public Domain (http://commons.wikimedia.org/wiki/File:Hand_tools.jpg)","attributes":{},"skip":false,"key":"4.1.1"},{"backlink":"handout/components/index.html#fig6.1.1","level":"6.1","list_caption":"Figure: components","alt":"components","nro":5,"url":"../../img/components.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"components","attributes":{},"skip":false,"key":"6.1.1"},{"backlink":"handout/advanced-components/index.html#fig8.1.1","level":"8.1","list_caption":"Figure: GB Network PCI Card by Harke is licensed under Public Domain (https://commons.wikimedia.org/wiki/File:GB_Network_PCI_Card.jpg)","alt":"GB Network PCI Card by Harke is licensed under Public Domain (https://commons.wikimedia.org/wiki/File:GB_Network_PCI_Card.jpg)","nro":6,"url":"../images/advanced-component.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"GB Network PCI Card by Harke is licensed under Public Domain (https://commons.wikimedia.org/wiki/File:GB_Network_PCI_Card.jpg)","attributes":{},"skip":false,"key":"8.1.1"},{"backlink":"handout/di/angular2/the_injector_tree.html#fig10.1.3.4.1","level":"10.1.3.4","list_caption":"Figure: Image of a Component Tree, and a DI Tree","alt":"Image of a Component Tree, and a DI Tree","nro":7,"url":"../../images/di-tree.png","index":1,"caption_template":"Figure: _CAPTION_","label":"Image of a Component Tree, and a DI Tree","attributes":{},"skip":false,"key":"10.1.3.4.1"},{"backlink":"handout/http/catching-rejections/retry.html#fig11.1.2.3.1","level":"11.1.2.3","list_caption":"Figure: Retry example from Slack","alt":"Retry example from Slack","nro":8,"url":"slack-retry.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"Retry example from Slack","attributes":{},"skip":false,"key":"11.1.2.3.1"},{"backlink":"handout/http/search_with_flatmap.html#fig11.1.3.1","level":"11.1.3","list_caption":"Figure: FlatMap created by ReactiveX licensed under CC-3 (http://reactivex.io/documentation/operators/flatmap.html)","alt":"FlatMap created by ReactiveX licensed under CC-3 (http://reactivex.io/documentation/operators/flatmap.html)","nro":9,"url":"../images/flat-map.png","index":1,"caption_template":"Figure: _CAPTION_","label":"FlatMap created by ReactiveX licensed under CC-3 (http://reactivex.io/documentation/operators/flatmap.html)","attributes":{},"skip":false,"key":"11.1.3.1"},{"backlink":"handout/http/search_with_switchmap.html#fig11.1.4.1","level":"11.1.4","list_caption":"Figure: SwitchMap created by ReactiveX licensed under CC-3 (http://reactivex.io/documentation/operators/flatmap.html)","alt":"SwitchMap created by ReactiveX licensed under CC-3 (http://reactivex.io/documentation/operators/flatmap.html)","nro":10,"url":"../images/switch-map.png","index":1,"caption_template":"Figure: _CAPTION_","label":"SwitchMap created by ReactiveX licensed under CC-3 (http://reactivex.io/documentation/operators/flatmap.html)","attributes":{},"skip":false,"key":"11.1.4.1"},{"backlink":"handout/change-detection/index.html#fig12.1.1","level":"12.1","list_caption":"Figure: Change Detector by Vovka is licensed under Public Domain  (https://pixabay.com/en/coins-handful-russia-ruble-kopek-650779/)","alt":"Change Detector by Vovka is licensed under Public Domain  (https://pixabay.com/en/coins-handful-russia-ruble-kopek-650779/)","nro":11,"url":"../images/change-detection.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"Change Detector by Vovka is licensed under Public Domain  (https://pixabay.com/en/coins-handful-russia-ruble-kopek-650779/)","attributes":{},"skip":false,"key":"12.1.1"},{"backlink":"handout/change-detection/angular_1_vs_angular_2.html#fig12.1.1.1","level":"12.1.1","list_caption":"Figure: File Structure","alt":"File Structure","nro":12,"url":"../images/angular1-vs-angular2.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"File Structure","attributes":{},"skip":false,"key":"12.1.1.1"},{"backlink":"handout/immutable/index.html#fig15.1.1","level":"15.1","list_caption":"Figure: Ayers Rock Uluru by Stefanoka is licensed under CC BY-SA 3.0 (https://commons.wikimedia.org/wiki/File:Ayers_Rock_Uluru.jpg)","alt":"Ayers Rock Uluru by Stefanoka is licensed under CC BY-SA 3.0 (https://commons.wikimedia.org/wiki/File:Ayers_Rock_Uluru.jpg)","nro":13,"url":"../images/uluru.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"Ayers Rock Uluru by Stefanoka is licensed under CC BY-SA 3.0 (https://commons.wikimedia.org/wiki/File:Ayers_Rock_Uluru.jpg)","attributes":{},"skip":false,"key":"15.1.1"},{"backlink":"handout/pipes/index.html#fig16.1.1","level":"16.1","list_caption":"Figure: Pipes by Life-Of-Pix is licensed under Public Domain (https://pixabay.com/en/pipe-plumbing-connection-pipeline-406906/)","alt":"Pipes by Life-Of-Pix is licensed under Public Domain (https://pixabay.com/en/pipe-plumbing-connection-pipeline-406906/)","nro":14,"url":"../images/pipes.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"Pipes by Life-Of-Pix is licensed under Public Domain (https://pixabay.com/en/pipe-plumbing-connection-pipeline-406906/)","attributes":{},"skip":false,"key":"16.1.1"},{"backlink":"handout/modules/index.html#fig18.1.1","level":"18.1","list_caption":"Figure: Used Lego Duplo Bricks by Arto Alanenpää is licensed under CC BY-SA 4.0 (https://commons.wikimedia.org/wiki/File:Lego_dublo_arto_alanenpaa_5.JPG)","alt":"Used Lego Duplo Bricks by Arto Alanenpää is licensed under CC BY-SA 4.0 (https://commons.wikimedia.org/wiki/File:Lego_dublo_arto_alanenpaa_5.JPG)","nro":15,"url":"../images/duplo-bricks.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"Used Lego Duplo Bricks by Arto Alanenpää is licensed under CC BY-SA 4.0 (https://commons.wikimedia.org/wiki/File:Lego_dublo_arto_alanenpaa_5.JPG)","attributes":{},"skip":false,"key":"18.1.1"},{"backlink":"handout/testing/intro-to-tdd/setup/execute.html#fig21.1.2.5.1","level":"21.1.2.5","list_caption":"Figure: image","alt":"image","nro":16,"url":"../../../images/simple-output.png","index":1,"caption_template":"Figure: _CAPTION_","label":"image","attributes":{},"skip":false,"key":"21.1.2.5.1"},{"backlink":"handout/migrate/index.html#fig22.1.1","level":"22.1","list_caption":"Figure: Great Migration by gekkodigitalmedia licensed under Public Domain (https://pixabay.com/en/great-migration-africa-animal-1021460/)","alt":"Great Migration by gekkodigitalmedia licensed under Public Domain (https://pixabay.com/en/great-migration-africa-animal-1021460/)","nro":17,"url":"../images/migration.jpg","index":1,"caption_template":"Figure: _CAPTION_","label":"Great Migration by gekkodigitalmedia licensed under Public Domain (https://pixabay.com/en/great-migration-africa-animal-1021460/)","attributes":{},"skip":false,"key":"22.1.1"},{"backlink":"handout/cli/creating-an-app.html#fig24.1.2.1","level":"24.1.2","list_caption":"Figure: App folder","alt":"App folder","nro":18,"url":"../images/cli-folder-setup.png","index":1,"caption_template":"Figure: _CAPTION_","label":"App folder","attributes":{},"skip":false,"key":"24.1.2.1"},{"backlink":"handout/a11y/key-concerns/keyboard-accessibility.html#fig25.1.2.2.1","level":"25.1.2.2","list_caption":"Figure: Focus border","alt":"Focus border","nro":19,"url":"./focus-border.png","index":1,"caption_template":"Figure: _CAPTION_","label":"Focus border","attributes":{},"skip":false,"key":"25.1.2.2.1"}]},"title":"Rangle.io : Angular 2 Training","language":"en","links":{"sidebar":{"Rangle.io : Angular 2 Training":"https://www.gitbook.com/book/rangle-io/ngcourse2"},"gitbook":true},"gitbook":">= 3.0.0","description":"Training Material for Rangle.io's Angular 2 Course."},"file":{"path":"handout/observables/using_observables.md","mtime":"2017-06-12T02:00:35.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-12T02:02:35.643Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-ga/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-versions/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-comment/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    
+<div><script style="display: none;" type="application/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57505611-7', 'auto', {name: 'microcdn'});
+  ga('microcdn.send', 'pageview');
+
+  var _cdn_prev_loc = window.location.pathname;
+  window.setInterval(function () {
+    if (window.location.pathname !== _cdn_prev_loc) {
+      _cdn_prev_loc = window.location.pathname;
+      ga('microcdn.send', 'pageview');
+    }
+  }, 100);
+
+</script></div>
+</body>
+</html>
+

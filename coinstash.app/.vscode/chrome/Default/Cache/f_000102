@@ -1,0 +1,532 @@
+<!--160x600-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>eBay Christmas Deals 2016</title>
+    <style>
+    /*Basic Setup*/
+
+    @font-face {
+        font-family: 'market-sans-regular';
+        src: url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-Regular-WebS.woff2') format('woff2'), url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-Regular-WebS.woff') format('woff'), url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-Regular-WebS.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'market-sans-bold';
+        src: url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-SemiBold-WebS.woff2') format('woff2'), url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-SemiBold-WebS.woff') format('woff'), url('https://secure.img-cdn.mediaplex.com/0/711/210870/MarketSans-SemiBold-WebS.ttf') format('truetype');
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        border: 0;
+        outline: 0;
+        font-weight: normal;
+    }
+
+    body,
+    html {
+        text-decoration: none;
+        border: 0;
+        outline: 0;
+        margin: 0;
+        padding: 0;
+        width: 160px;
+        height: 600px;
+        overflow: hidden;
+        background-color: #FFF;
+        font-family: Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body:hover {
+        cursor: pointer;
+    }
+
+    img {
+        border: 0;
+        outline: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        text-decoration: none;
+        border: 0;
+        outline: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    #mainwrapper {
+        width: 160px;
+        height: 600px;
+        overflow: hidden;
+        position: absolute;
+        background-color: #ffffff;
+        z-index: 98;
+    }
+
+    .border {
+        background-color: #ccc;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1000;
+    }
+
+    #border-top {
+        width: 160px;
+        height: 1px;
+    }
+
+    #border-right {
+        left: 159px;
+        width: 1px;
+        height: 600px;
+    }
+
+    #border-bottom {
+        top: 599px;
+        width: 160px;
+        height: 1px;
+    }
+
+    #border-left {
+        width: 1px;
+        height: 600px;
+    }
+
+    #backgroundClick {
+        width: 160px;
+        height: 600px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    /*Intro*/
+
+    #intro {
+        position: absolute;
+        background-repeat: no-repeat;
+        background-size: auto auto;
+        background-image: url("https://secure.img-cdn.mediaplex.com/0/710/229504/106634_160x600_visual.jpg");
+        background-color: #fff;
+        width: 160px;
+        height: 400px;
+        z-index: 10;
+        top: 220px;
+        right: 0px;
+    }
+
+    #introLogoHolder {
+        position: absolute;
+        bottom: 0;
+        height: 220px;
+        background-color: #006dfc;
+
+        background-repeat: no-repeat;
+        opacity: 1;
+        background-position: 20px 20px;
+        width: 160px;
+        bottom: 379px;
+        transition: opacity 1s ease-in;
+        -moz-transition: opacity 1s ease-in;
+        -ms-transition: opacity 1s ease-in;
+        -o-transition: opacity 1s ease-in;
+        -webkit-transition: opacity 1s ease-in;
+    }
+
+    #introLogo {
+      height: 26px;
+      left: 20px;
+      position: absolute;
+      top: 20px;
+      width: 63px;
+    }
+
+    #titleHolder {
+        position: absolute;
+        top: 80px;
+        left: 160px;
+        width: 110px;
+        color: #ffdb0b;
+        font-family: 'market-sans-bold', Helvetica, Arial, sans-serif;
+        font-size: 27px;
+        line-height: 33px;
+    }
+
+    #prev {
+        left: 0px;
+    }
+
+    #next {
+        right: 0px;
+    }
+
+    .uiBtn {
+        position: absolute;
+        width: 12px;
+        height: 18px;
+        top: 445px;
+        z-index: 300;
+        padding: 20px;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    .uiBtn:hover > svg > polyline {
+        cursor: pointer;
+        stroke: #b1b7d0;
+        transition: all .2s ease-in;
+        -moz-transition: all .2s ease-in;
+        -ms-transition: all .2s ease-in;
+        -o-transition: all .2s ease-in;
+        -webkit-transition: all .2s ease-in;
+    }
+
+    #imageHolder {
+        height: 120px;
+        position: absolute;
+        top: 0px;
+        /*left: 10px;*/
+        width: 120px;
+        background-image: url("https://secure.img-cdn.mediaplex.com/0/710/229504/106634_loading.gif");
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    #imgCont {
+        width: 120px;
+        height: 120px;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    #title {
+        position: relative;
+        color: #666666;
+        font-family: 'market-sans-regular', Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 17px;
+        overflow: hidden;
+        width: 100px;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+    }
+
+    #infoHolder {
+        color: #ffdb0b;
+        height: 180px;
+        position: absolute;
+        top: 162px;
+        /*left: 10px;*/
+        width: 120px;
+    }
+
+    #infoHolder #discountPrice {
+        position: relative;
+        display: inline-block;
+        font-size: 12px;
+        font-family: 'market-sans-regular', Helvetica, Arial, sans-serif;
+        color: #666666;
+    }
+
+    .strike {
+        font-weight: bold;
+        position: relative;
+        white-space: nowrap;
+        /* would center line-through in the middle of the wrapped lines */
+    }
+
+    .strike:after {
+        border-top: 1px solid #666666;
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 50%;
+        left: 0;
+    }
+
+    .spacer {
+        font-weight: bold;
+    }
+
+    #infoHolder #price {
+        display: block;
+        font-family: 'market-sans-regular', Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 19px;
+        color: #006dfc;
+        font-weight: bold;
+    }
+
+    .cta {
+        background-color: #006dfc;
+        bottom: 30px;
+        color: #ffdb0b;
+        font-family: 'market-sans-regular';
+        font-size: 12px;
+        left: 20px;
+        line-height: 26px;
+        padding: 4px 8px;
+        position: absolute;
+        stroke: #ffdb0b;
+        width: 86px;
+        z-index: 10;
+    }
+
+    .cta svg {
+      fill: none;
+      float: right;
+      height: 17px;
+      position: relative;
+      top: 5px;
+      width: 20px;
+    }
+
+    .cta:hover {
+        background-color: #ffdb0b;
+        color: #006dfc;
+        stroke: #006dfc;
+        transition: all .2s ease-in;
+        -moz-transition: all .2s ease-in;
+        -ms-transition: all .2s ease-in;
+        -o-transition: all .2s ease-in;
+        -webkit-transition: all .2s ease-in;
+    }
+
+
+    #static-cta {
+        background: #ffffff;
+        width: 160px;
+        height: 50px;
+        position: absolute;
+        bottom: 80px;
+        left: 0px;
+    }
+
+    #discountHolder {
+        display: block;
+        position: relative;
+        margin-right: 3px;
+    }
+
+    #discountPercentages {
+        position: relative;
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #006dfc;
+        line-height: 19px;
+    }
+
+    #legal {
+        position: relative;
+        display: inline-block;
+        font-size: 12px;
+        font-family: 'market-sans-regular', Helvetica, Arial, sans-serif;
+        color: #666666;
+    }
+
+    #itemContainer {
+        height: 330px;
+        /*overflow: hidden;*/
+        position: absolute;
+        top: 248px;
+        left: 0px;
+        width: 120px;
+        z-index: 1;
+    }
+
+    #eek {
+        font-size: 12px;
+        color: #ffdb0b;
+    }
+    /* Slide Effekt */
+
+    .animatePosOut {
+        transition: all .5s ease-in;
+        -moz-transition: all .5s ease-in;
+        -ms-transition: all .5s ease-in;
+        -o-transition: all .5s ease-in;
+        -webkit-transition: all .5s ease-in;
+    }
+
+    .animatePosIn {
+        transition: all .3s ease-out;
+        -moz-transition: all .3s ease-out;
+        -ms-transition: all .3s ease-out;
+        -o-transition: all .5s ease-out;
+        -webkit-transition: all .3s ease-out;
+    }
+
+    .slideLeftStart {
+        left: 0px;
+    }
+
+    .slideLeft {
+        left: 500px;
+    }
+
+    .slideRightStart {
+        /*left: 162px;*/
+    }
+
+    .slideRight {
+        left: 500px;
+    }
+    </style>
+</head>
+
+<body id="mainbody">
+    <div id="mainwrapper">
+        <!--<div id="fallback"><a href="https://uk.at.atwola.com/adlink/1065/4935803/0/154/AdId=18141350;BnId=1;itime=240929802;kp=294540;nodecode=yes;impref=14992409293331248598;imprefseq=37721001366134206;imprefts=1499240929;link=http://rover.ebay.com/rover/1/710-229504-51250-7/4?mpt=2928&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=TACTIC&ext_id=&ir_DAP_A1=0&siteid=3&ff10=101565768&ipn=admain2&ff13=1&ff14=unknown&ff20=97&ff14=unknown&ff20=97&mpcr=101565768&rvr_id=1249857561206&ck=28473_main" target="_blank"><img src="FFED_https://secure.img-cdn.mediaplex.com/0/710/229504/106634_11469_Display_Spring_Deals_Fallback.jpg" width="120" height="600"></a></div>
+        <script type="text/javascript">
+        document.getElementById('fallback').innerHTML="";
+        </script>-->
+        <div id="wrapper">
+            <a href="https://uk.at.atwola.com/adlink/1065/4935803/0/154/AdId=18141350;BnId=1;itime=240929802;kp=294540;nodecode=yes;impref=14992409293331248598;imprefseq=37721001366134206;imprefts=1499240929;link=http://rover.ebay.com/rover/1/710-229504-51250-7/4?mpt=2928&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=TACTIC&ext_id=&ir_DAP_A1=0&siteid=3&ff10=101565768&ipn=admain2&ff13=1&ff14=unknown&ff20=97&ff14=unknown&ff20=97&mpcr=101565768&rvr_id=1249857561206&ck=28473_main" target="_blank">
+                <div id="backgroundClick"></div>
+            </a>
+            <div>
+                <a href="" target="_blank" id="prodLink">
+                    <div id="itemContainer">
+                        <div id="imageHolder" class="slideLeftStart">
+                            <div id="imgCont" data-width="140" data-height="140">
+                                <img id="productImage" src="" alt="productimage" />
+                            </div>
+                        </div>
+                        <div id="infoHolder" class="slideRightStart">
+                            <span id="discountPercentages"></span>
+                            <h1 id="title">...</h1>
+                            <div id="eek"></div>
+                            <div id="discountHolder">
+                                <span id="legal"></span>
+                                <span id="discountPrice"></span>
+                                <span id="discountFlagEnd"></span>
+                            </div>
+                            <span id="price">...</span>
+                        </div>
+                    </div>
+                    <div id="cta" class="cta">
+                        <span>Shop Now</span>
+                        <svg viewBox="0 0 22 16" preserveAspectRatio="xMaxYMid slice">
+                          <polyline points="15,2 20,8 15,14" />
+                          <line x1="0.5" x2="20" y1="8" y2="8" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            <div id="next" class="uiBtn">
+                <svg width="12" height="18" class="arrows">
+                    <polyline stroke-linejoin="miter" points="3,1 11,9 3,17" stroke="#006dfc " stroke-width="2" fill="none" />
+                </svg>
+            </div>
+            <div id="prev" class="uiBtn">
+                <svg width="12" height="18" class="arrows">
+                    <polyline stroke-linejoin="miter" points="11,1 3,9 11,17" stroke="#006dfc " stroke-width="2" fill="none" />
+                </svg>
+            </div>
+            <div id="introHolder">
+                <a href="https://uk.at.atwola.com/adlink/1065/4935803/0/154/AdId=18141350;BnId=1;itime=240929802;kp=294540;nodecode=yes;impref=14992409293331248598;imprefseq=37721001366134206;imprefts=1499240929;link=http://rover.ebay.com/rover/1/710-229504-51250-7/4?mpt=2928&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=TACTIC&ext_id=&ir_DAP_A1=0&siteid=3&ff10=101565768&ipn=admain2&ff13=1&ff14=unknown&ff20=97&ff14=unknown&ff20=97&mpcr=101565768&rvr_id=1249857561206&ck=28473_main" target="_blank">
+                    <div id="intro"></div>
+                </a>
+            </div>
+            <a href="https://uk.at.atwola.com/adlink/1065/4935803/0/154/AdId=18141350;BnId=1;itime=240929802;kp=294540;nodecode=yes;impref=14992409293331248598;imprefseq=37721001366134206;imprefts=1499240929;link=http://rover.ebay.com/rover/1/710-229504-51250-7/4?mpt=2928&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=TACTIC&ext_id=&ir_DAP_A1=0&siteid=3&ff10=101565768&ipn=admain2&ff13=1&ff14=unknown&ff20=97&ff14=unknown&ff20=97&mpcr=101565768&rvr_id=1249857561206&ck=28473_main" target="_blank">
+                <div id="introLogoHolder"><svg id="introLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 623.72 249.95"><defs><style>.cls-1{fill:#ffdb0b;}.cls-2{fill:#ffdb0b;}.cls-3{fill:#ffdb0b;}.cls-4{fill:#ffdb0b;}</style></defs><title>eBayLogo</title><path class="cls-1" d="M394.86,132.56c-28.34.93-46,6-46,24.71,0,12.09,9.63,25.19,34.09,25.19,32.79,0,50.3-17.87,50.3-47.19V132C421.81,132,407.63,132.14,394.86,132.56Zm69.7,38.73c0,9.1.26,18.07,1.06,26.16H436.54a170.36,170.36,0,0,1-1.06-19.69c-15.72,19.32-34.42,24.88-60.35,24.88-38.47,0-59.07-20.33-59.07-43.85,0-34.06,28-46.07,76.65-47.19,13.3-.3,28.24-0.35,40.59-0.35v-3.33c0-22.8-14.62-32.18-40-32.18-18.81,0-32.67,7.78-34.1,21.24H326.4c3.48-33.54,38.71-42,69.69-42,37.12,0,68.47,13.21,68.47,52.46v63.87Z"/><path class="cls-2" d="M124.52,115.93C123.3,86.69,102.2,75.75,79.65,75.75c-24.32,0-43.74,12.31-47.14,40.18h92ZM31.83,136.71c1.69,28.37,21.25,45.15,48.15,45.15,18.64,0,35.21-7.59,40.77-24.11H153c-6.27,33.52-41.88,44.89-72.54,44.89C24.7,202.64,0,171.94,0,130.55,0,85,25.55,55,81,55,125,55,157.36,78,157.36,128.41v8.3H31.83Z"/><path class="cls-3" d="M237.53,181.27c29,0,48.92-20.91,48.92-52.46s-19.88-52.46-48.92-52.46c-28.88,0-48.93,20.91-48.93,52.46S208.65,181.27,237.53,181.27ZM157.35,0H188.6V78.51C203.92,60.26,225,55,245.79,55c34.83,0,73.51,23.5,73.51,74.24,0,42.49-30.76,73.44-74.09,73.44-22.68,0-44-8.13-57.19-24.25A169,169,0,0,1,187,197.45H156.29c0.53-9.92,1.06-22.28,1.06-32.28V0Z"/><path class="cls-4" d="M623.72,60.16L527.08,250h-35l27.78-52.7L447.14,60.16H483.7l53.52,107.11L590.59,60.16h33.13Z"/></svg></div>
+            </a>
+            <a href="https://uk.at.atwola.com/adlink/1065/4935803/0/154/AdId=18141350;BnId=1;itime=240929802;kp=294540;nodecode=yes;impref=14992409293331248598;imprefseq=37721001366134206;imprefts=1499240929;link=http://rover.ebay.com/rover/1/710-229504-51250-7/4?mpt=2928&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=TACTIC&ext_id=&ir_DAP_A1=0&siteid=3&ff10=101565768&ipn=admain2&ff13=1&ff14=unknown&ff20=97&ff14=unknown&ff20=97&mpcr=101565768&rvr_id=1249857561206&ck=28473_main" target="_blank">
+                <div id="titleHolder">
+                    Today's
+                    <br>Deals
+                </div>
+            </a>
+        </div>
+        <div class="border" id="border-top"></div>
+        <div class="border" id="border-right"></div>
+        <div class="border" id="border-bottom"></div>
+        <div class="border" id="border-left"></div>
+    </div>
+    <div id="fallback"></div>
+    <script type="text/javascript">
+    var discountNull = "&nbsp;";
+    var titleMaxLength = 30;
+
+
+    // Wordings:
+    var almGoneWording = "ALMOST GONE"; // Almost Gone Items
+    var freeShipWording = "Free delivery"; // Free Shipping
+    var prePercentages = "";
+    var afterPercentages = "% OFF ";
+    var currentOffer = "";
+    var disableScript = false;
+    var fallbackImageName = "FFED_https://secure.img-cdn.mediaplex.com/0/710/229504/106634_11469_Display_Spring_Deals_Fallback.jpg"
+
+    function get_browser_info() {
+        var ua = navigator.userAgent,
+            tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        if (/trident/i.test(M[1])) {
+            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+            return {
+                name: 'IE',
+                version: (tem[1] || '')
+            };
+        }
+        if (M[1] === 'Chrome') {
+            tem = ua.match(/\bOPR\/(\d+)/)
+            if (tem != null) {
+                return {
+                    name: 'Opera',
+                    version: tem[1]
+                };
+            }
+        }
+        M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+        if ((tem = ua.match(/version\/(\d+)/i)) != null) {
+            M.splice(1, 1, tem[1]);
+        }
+        return {
+            name: M[0],
+            version: M[1]
+        };
+    }
+
+    var fallbackW = document.getElementById('mainwrapper'),
+        style = window.getComputedStyle(fallbackW),
+        width = style.getPropertyValue('width'),
+        height = style.getPropertyValue('height');
+    var fallbackW = style.getPropertyValue('width');
+    var fallbackH = style.getPropertyValue('height');
+
+    function showFallback() {
+        var mainbody = document.getElementById('fallback');
+        mainbody.setAttribute('style', 'padding:0; margin:0;');
+        mainbody.innerHTML = '<a href="https://uk.at.atwola.com/adlink/1065/4935803/0/154/AdId=18141350;BnId=1;itime=240929802;kp=294540;nodecode=yes;impref=14992409293331248598;imprefseq=37721001366134206;imprefts=1499240929;link=http://rover.ebay.com/rover/1/710-229504-51250-7/4?mpt=2928&ff5=&ff6=&ff7=&ff8=&ff9=&ff19=TACTIC&ext_id=&ir_DAP_A1=0&siteid=3&ff10=101565768&ipn=admain2&ff13=1&ff14=unknown&ff20=97&ff14=unknown&ff20=97&mpcr=101565768&rvr_id=1249857561206&ck=28473_main" target="_blank" style="padding:0; margin:0; border:0;" ><img src="' + fallbackImageName + '" width="' + fallbackW + '" height="' + fallbackH + '" style="padding:0; margin:0; border:0;"></a>';
+        document.getElementById('mainwrapper').setAttribute('style', 'display:none')
+    }
+
+
+    if (get_browser_info().name.indexOf('IE') && get_browser_info().version <= 9 && get_browser_info().name != "Safari") {
+        //IE 8 Fallback
+        showFallback();
+    }
+
+    function animate() {
+        TweenLite.to(_id("intro"), 0.5, {
+            right: "160px",
+            ease: Power2.easeOut
+        });
+    }
+    </script>
+    <script type="text/javascript" src="https://secure.img-cdn.mediaplex.com/0/710/229504/106634_11469_Display_Spring_Deals_160x600.js"></script>
+    <script type="text/javascript" src="https://secure.img-cdn.mediaplex.com/0/711/TweenMax.min.js"></script>
+</body>
+
+</html>
