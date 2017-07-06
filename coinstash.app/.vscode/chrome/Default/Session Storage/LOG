@@ -1,0 +1,63 @@
+2017/07/04-19:28:15.334 10540 Reusing MANIFEST c:\LocalRepo\coinstash\coinstash.app\.vscode\chrome\Default\Session Storage/MANIFEST-000001
+2017/07/04-19:28:15.338 10540 Recovering log #14
+2017/07/04-19:28:15.338 10540 Reusing old log c:\LocalRepo\coinstash\coinstash.app\.vscode\chrome\Default\Session Storage/000014.log 
+2017/07/05-08:42:06.458 12532 Level-0 table #18: started
+2017/07/05-08:42:06.465 12532 Level-0 table #18: 174191 bytes OK
+2017/07/05-08:42:06.467 12532 Delete type=0 #14
+2017/07/05-08:42:06.468 12532 Compacting 4@0 + 1@1 files
+2017/07/05-08:42:06.475 12532 Generated table #19@0: 327 keys, 174155 bytes
+2017/07/05-08:42:06.475 12532 Compacted 4@0 + 1@1 files => 174155 bytes
+2017/07/05-08:42:06.477 12532 compacted to: files[ 0 1 1 0 0 0 0 ]
+2017/07/05-08:42:06.478 12532 Delete type=2 #7
+2017/07/05-08:42:06.478 12532 Delete type=2 #9
+2017/07/05-08:42:06.478 12532 Delete type=2 #12
+2017/07/05-08:42:06.479 12532 Delete type=2 #15
+2017/07/05-08:42:06.479 12532 Delete type=2 #18
+2017/07/05-08:50:02.131 12532 Level-0 table #21: started
+2017/07/05-08:50:02.142 12532 Level-0 table #21: 315308 bytes OK
+2017/07/05-08:50:02.146 12532 Delete type=0 #17
+2017/07/05-08:53:17.952 12532 Level-0 table #23: started
+2017/07/05-08:53:17.962 12532 Level-0 table #23: 180278 bytes OK
+2017/07/05-08:53:17.965 12532 Delete type=0 #20
+2017/07/05-08:57:01.545 12532 Level-0 table #25: started
+2017/07/05-08:57:01.550 12532 Level-0 table #25: 91123 bytes OK
+2017/07/05-08:57:01.551 12532 Delete type=0 #22
+2017/07/05-08:59:54.143 12532 Level-0 table #27: started
+2017/07/05-08:59:54.151 12532 Level-0 table #27: 79815 bytes OK
+2017/07/05-08:59:54.153 12532 Delete type=0 #24
+2017/07/05-08:59:54.154 12532 Compacting 4@0 + 1@1 files
+2017/07/05-08:59:54.179 12532 Generated table #28@0: 512 keys, 834473 bytes
+2017/07/05-08:59:54.179 12532 Compacted 4@0 + 1@1 files => 834473 bytes
+2017/07/05-08:59:54.180 12532 compacted to: files[ 0 1 1 0 0 0 0 ]
+2017/07/05-08:59:54.180 12532 Delete type=2 #19
+2017/07/05-08:59:54.181 12532 Delete type=2 #21
+2017/07/05-08:59:54.181 12532 Delete type=2 #23
+2017/07/05-08:59:54.182 12532 Delete type=2 #25
+2017/07/05-08:59:54.182 12532 Delete type=2 #27
+2017/07/05-09:01:14.622 12532 Level-0 table #30: started
+2017/07/05-09:01:14.627 12532 Level-0 table #30: 75673 bytes OK
+2017/07/05-09:01:14.629 12532 Delete type=0 #26
+2017/07/05-09:05:11.043 12532 Level-0 table #32: started
+2017/07/05-09:05:11.053 12532 Level-0 table #32: 33915 bytes OK
+2017/07/05-09:05:11.055 12532 Delete type=0 #29
+2017/07/05-09:06:28.062 12532 Level-0 table #34: started
+2017/07/05-09:06:28.074 12532 Level-0 table #34: 217044 bytes OK
+2017/07/05-09:06:28.075 12532 Delete type=0 #31
+2017/07/05-09:07:23.235 12532 Level-0 table #36: started
+2017/07/05-09:07:23.241 12532 Level-0 table #36: 147506 bytes OK
+2017/07/05-09:07:23.242 12532 Delete type=0 #33
+2017/07/05-09:07:23.243 12532 Compacting 4@0 + 1@1 files
+2017/07/05-09:07:23.269 12532 Generated table #37@0: 721 keys, 1273923 bytes
+2017/07/05-09:07:23.269 12532 Compacted 4@0 + 1@1 files => 1273923 bytes
+2017/07/05-09:07:23.270 12532 compacted to: files[ 0 1 1 0 0 0 0 ]
+2017/07/05-09:07:23.271 12532 Delete type=2 #28
+2017/07/05-09:07:23.271 12532 Delete type=2 #30
+2017/07/05-09:07:23.272 12532 Delete type=2 #32
+2017/07/05-09:07:23.272 12532 Delete type=2 #34
+2017/07/05-09:07:23.272 12532 Delete type=2 #36
+2017/07/05-10:52:03.369 12532 Level-0 table #39: started
+2017/07/05-10:52:03.378 12532 Level-0 table #39: 84159 bytes OK
+2017/07/05-10:52:03.381 12532 Delete type=0 #35
+2017/07/05-11:18:26.948 12532 Level-0 table #41: started
+2017/07/05-11:18:26.968 12532 Level-0 table #41: 332737 bytes OK
+2017/07/05-11:18:26.970 12532 Delete type=0 #38
