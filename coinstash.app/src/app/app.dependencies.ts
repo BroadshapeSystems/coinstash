@@ -1,5 +1,4 @@
-// import { ILogRepository } from '../domain/repository/log.repository.abstract';
-// import { LogRepository } from '../infrastructure/repository/log.repository';
+import { IWalletRepository } from '../domain/domain';
+import { WalletRepository } from '../infrastructure/repositories/repositories';
 
-export const dependencies = [];
-// { provide: ILogRepository, useClass: LogRepository }
+export const dependencies = [{ provide: IWalletRepository, useClass: WalletRepository }]

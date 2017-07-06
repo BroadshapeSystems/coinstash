@@ -13,7 +13,7 @@ namespace coinstash.api.Controllers
         [Route("all")]
         public IEnumerable<string> Wallets()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { Id = 1, provider = "Blockchain", currency = "Bitcoin"};
         }
     }
 }
