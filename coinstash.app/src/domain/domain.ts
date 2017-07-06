@@ -1,5 +1,4 @@
-import { IWalletRepository as _IWalletRepository } from './repository/wallet.repository.interface'
-
-export namespace Domain {
-    export const IWalletRepository = _IWalletRepository
-}
+export { IWalletRepository } from './repository/wallet.repository.interface';
+export { Wallet } from './model/wallet';
+export { Coin } from './model/coin';
+export { Portfolio } from './model/portfolio';
